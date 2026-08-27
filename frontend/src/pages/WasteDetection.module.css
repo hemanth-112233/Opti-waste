@@ -1,0 +1,538 @@
+/* ─────────────────────────────────────────────────────────────
+   WasteDetection.module.css
+   OptiWaste Phase 18 — Liquid Glass Waste Detection Page
+   ───────────────────────────────────────────────────────────── */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* ── Header ──────────────────────────────────────────────────── */
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.headerText {
+    flex: 1;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    color: var(--color-gray-900);
+}
+
+.subtitle {
+    font-size: 0.9375rem;
+    color: var(--color-gray-500);
+    margin-top: 0.375rem;
+    max-width: 56ch;
+    line-height: 1.55;
+}
+
+/* ── Toast notification ──────────────────────────────────────── */
+.toast {
+    position: fixed;
+    top: calc(var(--topbar-height) + 1rem);
+    right: 1.5rem;
+    z-index: 9999;
+    padding: 0.875rem 1.25rem;
+    border-radius: var(--radius-lg);
+    font-size: 0.9rem;
+    font-weight: 500;
+    background: var(--lg-surface-solid);
+    backdrop-filter: var(--lg-blur-md);
+    -webkit-backdrop-filter: var(--lg-blur-md);
+    border: 1px solid var(--lg-border-medium);
+    box-shadow: var(--lg-shadow-float);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    max-width: 360px;
+}
+
+.toastSuccess {
+    border-left: 3px solid var(--color-system-green);
+    color: var(--color-gray-900);
+}
+
+.toastError {
+    border-left: 3px solid var(--color-system-red);
+    color: var(--color-gray-900);
+}
+
+/* ── Summary stat grid ───────────────────────────────────────── */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.25rem;
+}
+
+/* ── Category pills panel ────────────────────────────────────── */
+.categoriesPanel {
+    background: var(--lg-surface-medium);
+    backdrop-filter: var(--lg-blur-md);
+    -webkit-backdrop-filter: var(--lg-blur-md);
+    border: 1px solid var(--lg-border-strong);
+    box-shadow: var(--lg-shadow-mid);
+    border-radius: var(--radius-xl);
+    padding: 1.5rem 1.75rem;
+}
+
+.categoriesTitle {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: 1.125rem;
+    letter-spacing: -0.01em;
+}
+
+.categoriesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+    gap: 0.875rem;
+}
+
+.categoryPill {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.875rem 1rem;
+    border-radius: var(--radius-lg);
+    background: var(--lg-surface-light);
+    border: 1px solid var(--lg-border-subtle);
+    transition: background var(--transition-fast);
+}
+
+.categoryPill:hover {
+    background: var(--lg-surface-medium);
+}
+
+.categoryIcon {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.categoryText {
+    flex: 1;
+}
+
+.categoryLabel {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-gray-600);
+}
+
+.categoryCount {
+    font-size: 1.375rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+}
+
+/* ── Filter bar ───────────────────────────────────────────────── */
+.filterSection {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.sectionTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    letter-spacing: -0.01em;
+}
+
+.filterTabs {
+    display: flex;
+    gap: 0.375rem;
+    background: var(--lg-surface-light);
+    border-radius: var(--radius-pill);
+    padding: 0.25rem;
+    border: 1px solid var(--lg-border-subtle);
+}
+
+.filterTab {
+    padding: 0.375rem 0.875rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-gray-600);
+    cursor: pointer;
+    border: none;
+    background: transparent;
+    transition: all var(--transition-fast);
+}
+
+.filterTab:hover {
+    color: var(--color-gray-900);
+    background: var(--lg-surface-medium);
+}
+
+.filterTabActive {
+    background: var(--lg-surface-solid);
+    color: var(--color-gray-900);
+    box-shadow: var(--lg-shadow-low);
+}
+
+/* ── Findings list ───────────────────────────────────────────── */
+.findingsPanel {
+    background: var(--lg-surface-medium);
+    backdrop-filter: var(--lg-blur-md);
+    -webkit-backdrop-filter: var(--lg-blur-md);
+    border: 1px solid var(--lg-border-strong);
+    box-shadow: var(--lg-shadow-mid);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+}
+
+.findingsHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.75rem;
+    border-bottom: 1px solid var(--lg-border-divider);
+}
+
+.findingsTitle {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+}
+
+.findingsCount {
+    font-size: 0.8125rem;
+    color: var(--color-gray-500);
+    background: var(--lg-surface-light);
+    padding: 0.25rem 0.625rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid var(--lg-border-subtle);
+}
+
+/* ── Finding row ─────────────────────────────────────────────── */
+.findingRow {
+    display: grid;
+    grid-template-columns: auto 1fr auto auto auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.75rem;
+    border-bottom: 1px solid var(--lg-border-divider);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+}
+
+.findingRow:hover {
+    background: var(--bg-element-hover);
+}
+
+.findingRow:last-child {
+    border-bottom: none;
+}
+
+.riskIndicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.findingMain {
+    min-width: 0;
+}
+
+.findingResource {
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.findingMeta {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.25rem;
+    flex-wrap: wrap;
+}
+
+.findingType {
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+.categoryTag {
+    font-size: 0.6875rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: var(--radius-pill);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.riskScore {
+    text-align: right;
+}
+
+.riskScoreValue {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.riskScoreLabel {
+    font-size: 0.6875rem;
+    color: var(--color-gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-top: 0.125rem;
+}
+
+.riskBadge {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    min-width: 72px;
+    text-align: center;
+}
+
+.wasteCost {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-system-orange);
+    text-align: right;
+    min-width: 64px;
+}
+
+.wasteCostNa {
+    color: var(--color-gray-400);
+    font-weight: 400;
+}
+
+/* ── Risk level colours ──────────────────────────────────────── */
+.riskLow {
+    color: var(--color-system-green);
+    background: rgba(52, 199, 89, 0.13);
+}
+
+.riskMedium {
+    color: var(--color-system-orange);
+    background: rgba(255, 149, 0, 0.13);
+}
+
+.riskHigh {
+    color: #E64A0F;
+    background: rgba(230, 74, 15, 0.12);
+}
+
+.riskCritical {
+    color: var(--color-system-red);
+    background: rgba(255, 59, 48, 0.13);
+}
+
+.dotLow {
+    background: var(--color-system-green);
+}
+
+.dotMedium {
+    background: var(--color-system-orange);
+}
+
+.dotHigh {
+    background: #E64A0F;
+}
+
+.dotCritical {
+    background: var(--color-system-red);
+}
+
+/* ── Empty state ─────────────────────────────────────────────── */
+.emptyState {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+.emptyIcon {
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-2xl);
+    background: var(--lg-surface-light);
+    border: 1px solid var(--lg-border-subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-400);
+}
+
+.emptyTitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-gray-700);
+}
+
+.emptySubtitle {
+    font-size: 0.875rem;
+    color: var(--color-gray-400);
+    max-width: 42ch;
+    line-height: 1.55;
+}
+
+/* ── Loading skeleton ────────────────────────────────────────── */
+.skeletonRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.125rem 1.75rem;
+    border-bottom: 1px solid var(--lg-border-divider);
+}
+
+.skeletonDot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--color-gray-200);
+    flex-shrink: 0;
+    animation: shimmer 1.4s ease-in-out infinite;
+}
+
+.skeletonLine {
+    height: 14px;
+    border-radius: var(--radius-sm);
+    background: var(--color-gray-200);
+    animation: shimmer 1.4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+
+    0%,
+    100% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* ── Modal detail ────────────────────────────────────────────── */
+.detailGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.125rem;
+}
+
+.detailRow {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    gap: 0.5rem;
+    align-items: start;
+}
+
+.detailLabel {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-gray-500);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    padding-top: 0.1rem;
+}
+
+.detailValue {
+    font-size: 0.9375rem;
+    color: var(--color-gray-900);
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.detailReason {
+    font-size: 0.875rem;
+    color: var(--color-gray-700);
+    background: var(--lg-surface-light);
+    border: 1px solid var(--lg-border-subtle);
+    border-radius: var(--radius-md);
+    padding: 0.875rem 1rem;
+    line-height: 1.65;
+    white-space: pre-wrap;
+}
+
+.detailCost {
+    color: var(--color-system-orange);
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.detailDivider {
+    height: 1px;
+    background: var(--lg-border-divider);
+    margin: 0.25rem 0;
+}
+
+/* ── Confidence bar ──────────────────────────────────────────── */
+.confidenceBar {
+    height: 6px;
+    border-radius: 3px;
+    background: var(--color-gray-200);
+    overflow: hidden;
+    margin-top: 0.375rem;
+}
+
+.confidenceFill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--color-system-blue), var(--color-system-cyan));
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .findingRow {
+        grid-template-columns: auto 1fr auto;
+        row-gap: 0.375rem;
+    }
+
+    .riskScore,
+    .wasteCost {
+        display: none;
+    }
+}
+
+@media (max-width: 560px) {
+    .categoriesGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .filterTabs {
+        flex-wrap: wrap;
+    }
+}

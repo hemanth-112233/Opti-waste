@@ -1,0 +1,617 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Signup.module.css — Step 4B
+   Two-column: cloud environment 65% LEFT, tall glass panel 35% RIGHT.
+   Design tokens from index.css (--material-*, --lg-*, --color-*).
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Page root ──────────────────────────────────────────────────────────── */
+.page {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 400px;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+
+    /* Warm lavender-white atmosphere — matches reference premium feel */
+    background:
+        radial-gradient(ellipse 80% 70% at 12% 8%, rgba(175, 178, 228, 0.26) 0%, transparent 58%),
+        radial-gradient(ellipse 70% 60% at 82% 88%, rgba(178, 182, 230, 0.20) 0%, transparent 55%),
+        radial-gradient(ellipse 55% 55% at 48% 42%, rgba(195, 198, 240, 0.12) 0%, transparent 62%),
+        linear-gradient(148deg, #EDEEF8 0%, #EEEEF9 45%, #EAEAF6 100%);
+}
+
+/* ── Atmospheric blobs (parallax-able, pointer-events:none) ─────────────── */
+.bgBlob1 {
+    position: absolute;
+    top: -12%;
+    left: 4%;
+    width: 55vw;
+    height: 54vh;
+    background: radial-gradient(circle, rgba(155, 162, 228, 0.20) 0%, transparent 68%);
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+    animation: blobFloat 26s ease-in-out infinite;
+}
+
+.bgBlob2 {
+    position: absolute;
+    bottom: -18%;
+    right: 8%;
+    width: 58vw;
+    height: 56vh;
+    background: radial-gradient(circle, rgba(148, 188, 210, 0.16) 0%, transparent 68%);
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+    z-index: 0;
+    animation: blobFloat 34s ease-in-out infinite reverse;
+}
+
+.bgBlob3 {
+    position: absolute;
+    top: 42%;
+    left: 38%;
+    width: 38vw;
+    height: 38vh;
+    background: radial-gradient(circle, rgba(188, 182, 248, 0.13) 0%, transparent 68%);
+    border-radius: 50%;
+    filter: blur(65px);
+    pointer-events: none;
+    z-index: 0;
+    animation: blobFloat 20s ease-in-out infinite 4s;
+}
+
+@keyframes blobFloat {
+
+    0%,
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+
+    33% {
+        transform: translate(2%, -2%) scale(1.02);
+    }
+
+    66% {
+        transform: translate(-1%, 2%) scale(0.98);
+    }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   LEFT — Cloud pane
+   ═══════════════════════════════════════════════════════════════════════════ */
+.cloudPane {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    grid-template-areas:
+        "brand"
+        "cloud"
+        "tagline";
+    align-items: center;
+    overflow: hidden;
+    padding: 2rem 1.5rem 1.75rem;
+    z-index: 1;
+}
+
+/* Brand mark — top-left */
+.brandMark {
+    grid-area: brand;
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding-bottom: 1.5rem;
+}
+
+.brandBadge {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    flex-shrink: 0;
+}
+
+.brandWord {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-gray-800);
+    letter-spacing: -0.02em;
+}
+
+/* ── Cloud visual ────────────────────────────────────────────────────────── */
+.cloudWrap {
+    grid-area: cloud;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 400px;
+    position: relative;
+    z-index: 1;
+}
+
+.cloudVisual {
+    width: 100%;
+    max-width: 640px;
+    height: 520px;
+}
+
+/* ── Bottom tagline ──────────────────────────────────────────────────────── */
+.cloudTagline {
+    grid-area: tagline;
+    grid-column: 1 / -1;
+    font-size: 0.68rem;
+    font-weight: 500;
+    color: rgba(60, 60, 67, 0.32);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    padding-top: 0.75rem;
+    margin: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   RIGHT — Form pane & glass panel
+   ═══════════════════════════════════════════════════════════════════════════ */
+.formPane {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem 1.75rem;
+    z-index: 5;
+    /* Subtle divider shadow from cloud pane */
+    border-left: 1px solid rgba(255, 255, 255, 0.40);
+    background: rgba(248, 248, 252, 0.50);
+    backdrop-filter: blur(0px);
+    min-height: 100vh;
+    overflow-y: auto;
+}
+
+/* ── Tall floating glass panel ───────────────────────────────────────────── */
+.glassPanel {
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+
+    /* Fit in 100vh — no scrolling on normal desktop */
+    overflow-y: auto;
+    scrollbar-width: none;
+
+    /* Premium liquid glass — translucent (64% white) */
+    background: rgba(255, 255, 255, 0.64);
+    backdrop-filter: blur(56px) saturate(220%);
+    -webkit-backdrop-filter: blur(56px) saturate(220%);
+    border: 1px solid rgba(255, 255, 255, 0.88);
+    border-radius: 32px;
+    padding: 1.5rem 1.75rem 1.4rem;
+    box-shadow:
+        0 28px 72px rgba(0, 0, 0, 0.09),
+        0 10px 28px rgba(0, 0, 0, 0.05),
+        inset 0 1.5px 0 rgba(255, 255, 255, 1);
+}
+
+.glassPanel::-webkit-scrollbar {
+    display: none;
+}
+
+/* Top specular edge */
+.panelSpecular {
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 1) 25%,
+            rgba(255, 255, 255, 1) 75%,
+            transparent);
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* ── Panel header ────────────────────────────────────────────────────────── */
+.panelHeader {
+    margin-bottom: 1.1rem;
+}
+
+.logoBadge {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: linear-gradient(145deg, #1c1c1e, #2c2c2e);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+    margin-bottom: 0.7rem;
+}
+
+.eyebrow {
+    font-size: 0.58rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(60, 60, 67, 0.36);
+    margin: 0 0 0.35rem;
+}
+
+.heading {
+    font-size: 1.42rem;
+    font-weight: 760;
+    color: var(--color-gray-900);
+    letter-spacing: -0.038em;
+    line-height: 1.16;
+    margin: 0 0 0.45rem;
+}
+
+.subheading {
+    font-size: 0.80rem;
+    color: var(--color-gray-500);
+    line-height: 1.50;
+    margin: 0;
+    max-width: 300px;
+}
+
+/* ── Banners ─────────────────────────────────────────────────────────────── */
+.errorBanner,
+.successBanner {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 0.85rem;
+    border-radius: 12px;
+    font-size: 0.84rem;
+    margin-bottom: 1.1rem;
+    backdrop-filter: blur(8px);
+}
+
+.errorBanner {
+    background: rgba(255, 59, 48, 0.06);
+    border: 1px solid rgba(255, 59, 48, 0.16);
+    color: var(--color-system-red);
+}
+
+.successBanner {
+    background: rgba(52, 199, 89, 0.07);
+    border: 1px solid rgba(52, 199, 89, 0.20);
+    color: #1a7a3a;
+}
+
+/* ── Form ────────────────────────────────────────────────────────────────── */
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.58rem;
+    margin-bottom: 0.85rem;
+}
+
+/* ── Field ───────────────────────────────────────────────────────────────── */
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.20rem;
+}
+
+.label {
+    font-size: 0.74rem;
+    font-weight: 580;
+    color: rgba(60, 60, 67, 0.60);
+    letter-spacing: 0.01em;
+    padding-left: 0.2rem;
+}
+
+/* ── Glass input row ─────────────────────────────────────────────────────── */
+.inputRow {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.inputIcon {
+    position: absolute;
+    left: 0.82rem;
+    color: rgba(60, 60, 67, 0.36);
+    pointer-events: none;
+    z-index: 1;
+    flex-shrink: 0;
+}
+
+.input {
+    width: 100%;
+    height: 38px;
+    padding: 0 0.9rem 0 2.35rem;
+    border-radius: 10px;
+    font-size: 0.875rem;
+    font-family: var(--font-family-sans);
+    color: var(--color-gray-900);
+
+    /* Glass material */
+    background: rgba(255, 255, 255, 0.52);
+    border: 1px solid rgba(60, 60, 67, 0.15);
+    box-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.82);
+
+    transition:
+        background var(--transition-fast),
+        border-color var(--transition-fast),
+        box-shadow var(--transition-fast);
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.input::placeholder {
+    color: rgba(60, 60, 67, 0.30);
+}
+
+/*
+ * NEUTRAL glass focus treatment — no aggressive blue ring.
+ * Subtle lavender/white illumination + graphite border.
+ */
+.input:focus {
+    background: rgba(255, 255, 255, 0.78);
+    border-color: rgba(100, 95, 140, 0.28);
+    box-shadow:
+        0 0 0 3px rgba(120, 115, 160, 0.09),
+        0 1px 4px rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Right padding when eye button present */
+.inputHasEye {
+    padding-right: 2.6rem;
+}
+
+/* ── Eye toggle button ───────────────────────────────────────────────────── */
+.eyeBtn {
+    position: absolute;
+    right: 0.6rem;
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(60, 60, 67, 0.38);
+    transition: color var(--transition-fast), background var(--transition-fast);
+    outline: none;
+    z-index: 2;
+}
+
+.eyeBtn:hover {
+    background: rgba(0, 0, 0, 0.04);
+    color: var(--color-gray-700);
+}
+
+.eyeBtn:focus-visible {
+    box-shadow: 0 0 0 2px rgba(100, 95, 140, 0.35);
+    border-radius: 8px;
+}
+
+/* ── Terms ───────────────────────────────────────────────────────────────── */
+.termsLabel {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.80rem;
+    color: rgba(60, 60, 67, 0.60);
+    cursor: pointer;
+    user-select: none;
+}
+
+.termsBox {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    accent-color: #1c1c1e;
+    cursor: pointer;
+}
+
+.termsLink {
+    color: var(--color-gray-700);
+    font-weight: 550;
+    text-decoration: underline;
+    text-decoration-color: rgba(60, 60, 67, 0.28);
+}
+
+.termsLink:hover {
+    text-decoration-color: var(--color-gray-700);
+}
+
+/* ── Submit button ───────────────────────────────────────────────────────── */
+.submitBtn {
+    width: 100%;
+    justify-content: center;
+    margin-top: 0.18rem;
+}
+
+/* ── Divider ─────────────────────────────────────────────────────────────── */
+.divider {
+    display: flex;
+    align-items: center;
+    margin: 0.1rem 0 0.75rem;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+}
+
+.divider span {
+    font-size: 0.67rem;
+    color: rgba(60, 60, 67, 0.38);
+    padding: 0 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* ── Social grid 2×2 ─────────────────────────────────────────────────────── */
+.socialGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.45rem;
+    margin-bottom: 1.0rem;
+}
+
+.socialBtn {
+    width: 100%;
+    justify-content: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+}
+
+/* ── Login link ──────────────────────────────────────────────────────────── */
+.loginLine {
+    text-align: center;
+    font-size: 0.84rem;
+    color: rgba(60, 60, 67, 0.48);
+    margin: 0;
+}
+
+.loginLink {
+    color: var(--color-gray-900);
+    font-weight: 640;
+    text-decoration: none;
+    border-bottom: 1.5px solid rgba(60, 60, 67, 0.22);
+    padding-bottom: 1px;
+    transition: border-color var(--transition-fast);
+    white-space: nowrap;
+}
+
+.loginLink:hover {
+    border-color: var(--color-gray-800);
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════════════════════════ */
+
+/* Tablet: compress columns slightly */
+@media (max-width: 1100px) {
+    .page {
+        grid-template-columns: minmax(0, 1fr) 360px;
+    }
+
+    .cloudPane {
+        padding: 1.5rem 1rem;
+    }
+
+    .storyRail {
+        display: none;
+    }
+
+    .cloudPane {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "brand"
+            "cloud"
+            "tagline";
+    }
+
+    .cloudWrap {
+        min-height: 300px;
+    }
+}
+
+/* Mobile: vertical stack */
+@media (max-width: 768px) {
+    .page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .cloudPane {
+        min-height: 240px;
+        max-height: 320px;
+        padding: 1.25rem 1rem 0.75rem;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .cloudVisual {
+        height: 220px;
+    }
+
+    .cloudTagline {
+        font-size: 0.60rem;
+    }
+
+    .formPane {
+        padding: 1.25rem 1rem 2rem;
+        min-height: auto;
+        align-items: flex-start;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.40);
+        flex: 1;
+        background: rgba(248, 248, 252, 0.65);
+    }
+
+    .glassPanel {
+        max-width: 100%;
+        max-height: none;
+        border-radius: 24px;
+        padding: 1.75rem 1.4rem;
+    }
+
+    .heading {
+        font-size: 1.4rem;
+    }
+}
+
+/* Very small */
+@media (max-width: 380px) {
+    .socialGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .glassPanel {
+        padding: 1.4rem 1.15rem;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   REDUCED MOTION
+   ══════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+
+    .bgBlob1,
+    .bgBlob2,
+    .bgBlob3 {
+        animation: none;
+    }
+
+    .input {
+        transition: none;
+    }
+
+    .eyeBtn {
+        transition: none;
+    }
+
+    .loginLink {
+        transition: none;
+    }
+}

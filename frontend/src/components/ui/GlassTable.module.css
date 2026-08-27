@@ -1,0 +1,125 @@
+.tableWrapper {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: var(--radius-2xl);
+    background: var(--lg-surface-heavy);
+    backdrop-filter: var(--lg-blur-md);
+    -webkit-backdrop-filter: var(--lg-blur-md);
+    border: 1px solid var(--lg-border-strong);
+    box-shadow: var(--lg-shadow-mid);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Specular top edge */
+.tableWrapper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.95) 30%,
+            rgba(255, 255, 255, 0.95) 70%,
+            transparent);
+    z-index: 2;
+    pointer-events: none;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.th {
+    padding: 0.85rem 1.25rem;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-weight: 600;
+    color: var(--color-gray-400);
+    background: rgba(0, 0, 0, 0.015);
+    border-bottom: 1px solid var(--lg-border-divider);
+    white-space: nowrap;
+}
+
+.tr {
+    transition: background var(--transition-instant);
+    border-bottom: 1px solid var(--lg-border-divider);
+}
+
+.tr:last-child {
+    border-bottom: none;
+}
+
+.clickable {
+    cursor: pointer;
+}
+
+.clickable:hover {
+    background: rgba(0, 0, 0, 0.025);
+}
+
+.td {
+    padding: 1rem 1.25rem;
+    font-size: 0.875rem;
+    color: var(--color-gray-900);
+    vertical-align: middle;
+}
+
+.align-left {
+    text-align: left;
+}
+
+.align-center {
+    text-align: center;
+}
+
+.align-right {
+    text-align: right;
+}
+
+.emptyCell {
+    padding: 3.5rem 2rem;
+    text-align: center;
+    color: var(--color-gray-400);
+    font-size: 0.9rem;
+}
+
+.loadingCell {
+    padding: 4rem;
+}
+
+.loadingWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--color-gray-400);
+    font-size: 0.875rem;
+}
+
+.spinner {
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid var(--color-gray-200);
+    border-left-color: var(--color-system-blue);
+    border-radius: 50%;
+    animation: spin 0.9s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .tableWrapper {
+        background: rgba(255, 255, 255, 0.96);
+    }
+}

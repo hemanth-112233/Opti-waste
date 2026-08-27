@@ -1,0 +1,94 @@
+.layoutContainer {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    /* Neutral Apple Liquid Glass canvas — barely-there ambient tint */
+    background:
+        radial-gradient(ellipse 80% 60% at 15% 10%, rgba(0, 110, 255, 0.022) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 85% 90%, rgba(88, 86, 214, 0.025) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 60% at 60% 40%, rgba(50, 173, 230, 0.015) 0%, transparent 60%),
+        linear-gradient(160deg, #F2F2F4 0%, #F4F4F6 40%, #EFEFF2 100%);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ambient glow orbs — extremely subtle; barely-visible light field */
+.ambientGlowPrimary {
+    position: absolute;
+    top: -15%;
+    left: 5%;
+    width: 55vw;
+    height: 55vh;
+    background: radial-gradient(circle,
+            rgba(0, 110, 255, 0.032) 0%,
+            rgba(88, 86, 214, 0.018) 40%,
+            transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    animation: ambientFloat 28s ease-in-out infinite;
+    filter: blur(50px);
+}
+
+.ambientGlowSecondary {
+    position: absolute;
+    bottom: -20%;
+    right: 0%;
+    width: 60vw;
+    height: 60vh;
+    background: radial-gradient(circle,
+            rgba(50, 173, 230, 0.028) 0%,
+            rgba(52, 199, 89, 0.018) 40%,
+            transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+    animation: ambientFloat 38s ease-in-out infinite reverse;
+    filter: blur(60px);
+}
+
+.sidebarWrapper {
+    z-index: 10;
+    flex-shrink: 0;
+}
+
+.mainWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 10;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.mainContent {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1.5rem 2rem 2rem;
+    scroll-behavior: smooth;
+}
+
+.contentContainer {
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.mainContent::-webkit-scrollbar {
+    width: 5px;
+}
+
+.mainContent::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.mainContent::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.10);
+    border-radius: 999px;
+}
+
+.mainContent::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.18);
+}

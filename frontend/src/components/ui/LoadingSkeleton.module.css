@@ -1,0 +1,50 @@
+.skeleton {
+    /* Glass-native shimmer — translucent on actual glass surfaces */
+    background: linear-gradient(90deg,
+            rgba(0, 0, 0, 0.040) 25%,
+            rgba(255, 255, 255, 0.55) 50%,
+            rgba(0, 0, 0, 0.040) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.6s infinite linear;
+    border-radius: var(--radius-sm);
+    margin-bottom: 0.5rem;
+}
+
+.text {
+    height: 1rem;
+    width: 100%;
+}
+
+.title {
+    height: 1.5rem;
+    width: 60%;
+    margin-bottom: 1rem;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.card {
+    height: 200px;
+    width: 100%;
+    border-radius: var(--radius-xl);
+}
+
+.table-row {
+    height: 3rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}

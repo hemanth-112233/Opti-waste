@@ -1,0 +1,172 @@
+.overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background-color: var(--bg-black-30);
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease-out forwards;
+}
+
+.modal {
+    width: 100%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.03) 100%);
+    backdrop-filter: blur(40px);
+    border: 1px solid var(--border-white-10);
+    border-radius: 1.5rem;
+    box-shadow: var(--shadow-2xl);
+    padding: 2rem;
+    animation: slideUp 0.3s ease-out forwards;
+}
+
+.modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--color-white);
+}
+
+.closeButton {
+    color: var(--color-slate-400);
+    transition: color 0.2s ease;
+    padding: 0.5rem;
+    border-radius: 50%;
+}
+
+.closeButton:hover {
+    color: var(--color-white);
+    background-color: var(--bg-white-10);
+}
+
+.formGrid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.fullWidth {
+    grid-column: 1 / -1;
+}
+
+.formGroup {
+    margin-bottom: 0.5rem;
+}
+
+.label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-slate-300);
+    margin-bottom: 0.5rem;
+}
+
+.input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-white-10);
+    border-radius: 0.75rem;
+    color: var(--color-slate-100);
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
+}
+
+.input:focus {
+    outline: none;
+    border-color: var(--color-cyan-500);
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+.select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="white" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position-x: calc(100% - 1rem);
+    background-position-y: 50%;
+}
+
+.actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.cancelBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    color: var(--color-slate-300);
+    background-color: transparent;
+    transition: all 0.2s;
+}
+
+.cancelBtn:hover {
+    background-color: var(--bg-white-10);
+    color: var(--color-white);
+}
+
+.submitBtn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.75rem;
+    background-color: var(--color-cyan-500);
+    color: var(--color-white);
+    font-weight: 500;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+.submitBtn:hover {
+    background-color: var(--color-cyan-400);
+    transform: translateY(-1px);
+}
+
+.submitBtn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

@@ -1,0 +1,132 @@
+.chartCard {
+    background: var(--lg-surface-heavy);
+    backdrop-filter: var(--lg-blur-md);
+    -webkit-backdrop-filter: var(--lg-blur-md);
+    border: 1px solid var(--lg-border-strong);
+    border-radius: var(--radius-2xl);
+    padding: 1.5rem;
+    box-shadow: var(--lg-shadow-mid);
+    transition:
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Specular highlight */
+.chartCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.95) 30%,
+            rgba(255, 255, 255, 0.95) 70%,
+            transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.chartCard:hover {
+    box-shadow: var(--lg-shadow-high);
+    transform: translateY(-2px);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.25rem;
+}
+
+.titleGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.title {
+    font-size: 1rem;
+    font-weight: 620;
+    color: var(--color-gray-900);
+    letter-spacing: -0.02em;
+}
+
+.description {
+    font-size: 0.8rem;
+    color: var(--color-gray-500);
+    margin-top: 0.2rem;
+}
+
+.chartWrapper {
+    position: relative;
+    width: 100%;
+}
+
+.loadingOverlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.60);
+    backdrop-filter: blur(6px);
+    z-index: 10;
+    border-radius: var(--radius-md);
+}
+
+.spinner {
+    width: 1.75rem;
+    height: 1.75rem;
+    border: 2.5px solid rgba(0, 0, 0, 0.08);
+    border-left-color: var(--color-system-blue);
+    border-radius: 50%;
+    animation: chartSpin 0.9s linear infinite;
+}
+
+@keyframes chartSpin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Recharts overrides — clean Apple-style charts */
+:global(.recharts-cartesian-grid-horizontal line),
+:global(.recharts-cartesian-grid-vertical line) {
+    stroke: rgba(0, 0, 0, 0.05);
+    stroke-dasharray: 4 4;
+}
+
+:global(.recharts-text) {
+    fill: var(--color-gray-400);
+    font-family: var(--font-family-sans);
+    font-size: 11px;
+}
+
+:global(.recharts-tooltip-wrapper) {
+    filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.12));
+}
+
+:global(.recharts-default-tooltip) {
+    background: rgba(255, 255, 255, 0.92) !important;
+    border: 1px solid rgba(255, 255, 255, 0.80) !important;
+    border-radius: var(--radius-lg) !important;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10) !important;
+    font-family: var(--font-family-sans) !important;
+    font-size: 0.82rem !important;
+}
+
+:global(.recharts-legend-item-text) {
+    font-size: 0.8rem !important;
+    color: var(--color-gray-600) !important;
+    font-family: var(--font-family-sans) !important;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .chartCard {
+        background: rgba(255, 255, 255, 0.96);
+    }
+}

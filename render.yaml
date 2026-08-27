@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: optiwaste-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: MONGODB_URI
+        sync: false
+      - key: JWT_SECRET
+        sync: false
+      - key: JWT_REFRESH_SECRET
+        sync: false
+      - key: TOKEN_EXPIRY
+        value: 1h
+      - key: REFRESH_EXPIRY
+        value: 7d
+      - key: CORS_ORIGIN
+        sync: false

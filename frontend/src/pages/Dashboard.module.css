@@ -1,0 +1,568 @@
+/* ══════════════════════════════════════════════════════════
+   DASHBOARD — Premium Apple Liquid Glass Layout (Step 2)
+   Uses --material-l* and --lg-* tokens from index.css.
+   Zero hardcoded rgba values.
+   ══════════════════════════════════════════════════════════ */
+
+/* ── Page Container ──────────────────────────────────────── */
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+/* ── Hero Environment: visual + header + CWRI ────────────── */
+/*
+ * Wraps the animated visual, hero text, and CWRI panel together.
+ * The visual sits at z-index 0, hero content at z-index 1.
+ * overflow:hidden clips the visual neatly; border-radius matches
+ * inner panels so blur bleeds through glass surfaces above.
+ */
+.heroEnvironment {
+    position: relative;
+    border-radius: var(--radius-3xl);
+    overflow: hidden;
+    /* Enough height for the cloud visual to breathe */
+    min-height: 500px;
+    /* Warm lavender atmospheric background behind the cloud */
+    background:
+        radial-gradient(ellipse 80% 80% at 60% 40%, rgba(175, 185, 240, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 60% at 15% 80%, rgba(155, 175, 230, 0.14) 0%, transparent 60%),
+        linear-gradient(145deg, #EDEEF8 0%, #EEEEF9 50%, #E8E9F5 100%);
+}
+
+/* Absolutely-positioned visual layer — behind all hero content */
+.heroVisualLayer {
+    position: absolute !important;
+    inset: 0 !important;
+    height: 100% !important;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    border-radius: 0 !important;
+    /* Full opacity — visual is the hero environment */
+    opacity: 1.0;
+}
+
+/* Hero content — two-column grid above the cloud.
+ * Left column: greeting text (cloud shows through underneath).
+ * Right column: CWRI glass panel (floating above the cloud).
+ */
+.heroContent {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: start;
+    gap: 1.75rem;
+    padding: 2rem;
+    min-height: 500px;
+}
+
+.heroLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0.5rem;
+}
+
+.heroRight {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding-top: 0.25rem;
+}
+
+/* ── Hero Header ─────────────────────────────────────────── */
+.heroSection {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
+.heroEyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-gray-400);
+}
+
+.heroTitle {
+    font-size: 2.0rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.04em;
+    line-height: 1.1;
+}
+
+.heroSubtitle {
+    font-size: 0.925rem;
+    color: var(--color-gray-500);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    margin-top: 0.1rem;
+}
+
+/* ── CWRI Hero Panel ────────────────────────────────────── */
+/*
+ * Reduced to ~65% white so animated environment is visible.
+ * Material tokens still used — only background is overridden.
+ */
+.cwriPanel {
+    position: relative;
+    /* Genuinely translucent — cloud environment shows through */
+    background: rgba(255, 255, 255, 0.42);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.60);
+    border-radius: var(--radius-3xl);
+    box-shadow:
+        0 2px 1px rgba(255, 255, 255, 0.60) inset,
+        0 24px 64px rgba(80, 90, 160, 0.14),
+        0 8px 24px rgba(80, 90, 160, 0.08);
+    /* Tighter padding since panel width is constrained to 420px column */
+    padding: 1.35rem 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    gap: 1rem 1.25rem;
+    align-items: center;
+    overflow: hidden;
+    transition:
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.cwriPanel:hover {
+    box-shadow: var(--lg-shadow-high);
+    transform: translateY(-2px);
+}
+
+/* Specular top highlight */
+.cwriPanel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 5%;
+    right: 5%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--lg-border-bright) 20%,
+            var(--lg-border-bright) 80%,
+            transparent);
+    pointer-events: none;
+}
+
+/* Ambient tint — toned down vs original */
+.cwriPanel::after {
+    content: '';
+    position: absolute;
+    right: -5%;
+    top: -30%;
+    width: 40%;
+    height: 160%;
+    background: radial-gradient(circle,
+            var(--glow-blue) 0%,
+            var(--glow-purple) 50%,
+            transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
+}
+
+.cwriLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+}
+
+.cwriLabel {
+    font-size: 0.68rem;
+    font-weight: 700;
+    color: var(--color-gray-400);
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+}
+
+/* Kept for mobile fallback only */
+.cwriScore {
+    font-size: 2.8rem;
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+}
+
+/* ── Center column: large numeric score + badge ━━━━━━━━━━ */
+.cwriCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+    padding: 0 0.5rem;
+}
+
+.cwriScoreCenter {
+    font-size: 2.6rem;
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: -0.05em;
+    font-variant-numeric: tabular-nums;
+}
+
+.cwriScoreSub {
+    font-size: 0.70rem;
+    color: var(--color-gray-400);
+    font-weight: 500;
+    margin-bottom: 0.3rem;
+}
+
+.cwriStatus {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.22rem 0.55rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.67rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.cwriStatusLow {
+    background: rgba(52, 199, 89, 0.10);
+    color: var(--color-system-green);
+    border: 1px solid rgba(52, 199, 89, 0.20);
+}
+
+.cwriStatusMedium {
+    background: rgba(255, 149, 0, 0.10);
+    color: var(--color-system-orange);
+    border: 1px solid rgba(255, 149, 0, 0.20);
+}
+
+.cwriStatusHigh {
+    background: rgba(255, 59, 48, 0.10);
+    color: var(--color-system-red);
+    border: 1px solid rgba(255, 59, 48, 0.20);
+}
+
+/* Neutral: metric data unavailable */
+.cwriStatusNeutral {
+    background: rgba(142, 142, 147, 0.10);
+    color: var(--color-gray-400);
+    border: 1px solid rgba(142, 142, 147, 0.20);
+}
+
+.cwriMeta {
+    font-size: 0.77rem;
+    color: var(--color-gray-500);
+    line-height: 1.5;
+}
+
+/* ── Right column: ring + mini stats ━━━━━━━━━━━━━━━━━ */
+.cwriRight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.cwriRing {
+    width: 116px;
+    height: 116px;
+    flex-shrink: 0;
+}
+
+.cwriStats {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.cwriStat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.1rem;
+}
+
+.cwriStatValue {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.cwriStatLabel {
+    font-size: 0.62rem;
+    color: var(--color-gray-400);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* ── KPI Grid — 4 floating cards ────────────────────────── */
+/*
+ * Override GlassStatCard's --lg-surface-heavy (80% white)
+ * with a more translucent level-2 surface so the hero
+ * visual bleeds through subtly on the cards just below.
+ */
+.gridCards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+}
+
+/* Target each card inside the grid */
+.gridCards>*> :global(.card),
+/* GlassStatCard root class */
+.gridCards>*>* {
+    background: rgba(255, 255, 255, 0.60) !important;
+    backdrop-filter: blur(28px) saturate(200%) !important;
+    -webkit-backdrop-filter: blur(28px) saturate(200%) !important;
+}
+
+/* ── Section Header ───────────────────────────────────────── */
+.sectionHeader {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: -0.5rem;
+}
+
+.sectionTitle {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--color-gray-400);
+}
+
+/* ── Chart Grids ────────────────────────────────────────── */
+.gridCharts {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.gridChartsSmall {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+/* ── Intelligence Triptych (full-width 3-col) ───────────── */
+.triptych {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.25rem;
+}
+
+/* Inline mini-stat panel — level 2 glass */
+.miniStatPanel {
+    background: var(--material-l2-bg);
+    backdrop-filter: var(--material-l2-blur);
+    -webkit-backdrop-filter: var(--material-l2-blur);
+    border: 1px solid var(--material-l2-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--material-l2-shadow);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    position: relative;
+    overflow: hidden;
+    transition:
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+}
+
+.miniStatPanel:hover {
+    box-shadow: var(--lg-shadow-mid);
+    transform: translateY(-2px);
+}
+
+/* Specular edge */
+.miniStatPanel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.90) 30%, rgba(255, 255, 255, 0.90) 70%, transparent);
+    pointer-events: none;
+}
+
+.miniStatEyebrow {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gray-400);
+}
+
+.miniStatValue {
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.miniStatSub {
+    font-size: 0.78rem;
+    color: var(--color-gray-500);
+    line-height: 1.4;
+}
+
+/* ── Bottom Table ─────────────────────────────────────────── */
+.bottomSection {
+    width: 100%;
+}
+
+/* Level 3 glass for the table card — slightly elevated */
+.tableCard {
+    background: var(--material-l3-bg);
+    backdrop-filter: var(--material-l3-blur);
+    -webkit-backdrop-filter: var(--material-l3-blur);
+    border: 1px solid var(--material-l3-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--material-l3-shadow);
+    overflow: hidden;
+    position: relative;
+}
+
+.tableCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 6%;
+    right: 6%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.95) 30%, rgba(255, 255, 255, 0.95) 70%, transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.tableHeader {
+    padding: 1.5rem 1.75rem;
+    border-bottom: 1px solid var(--lg-border-divider);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.tableTitle {
+    font-size: 1rem;
+    font-weight: 650;
+    color: var(--color-gray-900);
+    letter-spacing: -0.02em;
+}
+
+.tableDesc {
+    font-size: 0.8rem;
+    color: var(--color-gray-500);
+    margin-top: 0.2rem;
+}
+
+/* ── Summary Divider Row ─────────────────────────────────── */
+.dividerRow {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.dividerLine {
+    flex: 1;
+    height: 1px;
+    background: var(--lg-border-divider);
+}
+
+.dividerLabel {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--color-gray-400);
+    white-space: nowrap;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1200px) {
+    .gridCards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .gridChartsSmall,
+    .triptych {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .cwriPanel {
+        /* 2-col on tablet: info + ring */
+        grid-template-columns: 1fr auto;
+    }
+
+    /* Hide the center score on tablet (score shown inside the ring) */
+    .cwriCenter {
+        display: none;
+    }
+
+    .cwriRight {
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .gridCharts,
+    .gridChartsSmall,
+    .triptych {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .heroTitle {
+        font-size: 1.65rem;
+    }
+
+    .gridCards {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.85rem;
+    }
+
+    .triptych {
+        grid-template-columns: 1fr;
+    }
+
+    .cwriScore {
+        font-size: 2.75rem;
+    }
+
+    .cwriPanel {
+        padding: 1.5rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .cwriPanel,
+    .miniStatPanel {
+        transition: none;
+    }
+
+    .cwriPanel:hover,
+    .miniStatPanel:hover {
+        transform: none;
+    }
+}

@@ -1,0 +1,608 @@
+/* Verification.module.css
+ * OptiWaste — Phase 21 Step 3: Verification Dashboard UI
+ * Liquid Glass design system
+ */
+
+/* ── Page Layout ─────────────────────────────────────────────────────────────── */
+.page {
+    padding: 28px 32px;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────────── */
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.headerLeft {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--color-text-primary, #1a1a2e);
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: var(--color-text-secondary, #6b7280);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 520px;
+}
+
+.runResult {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-green, #1a8c3a);
+    font-weight: 500;
+    padding: 6px 12px;
+    background: rgba(52, 199, 89, 0.10);
+    border: 1px solid rgba(52, 199, 89, 0.25);
+    border-radius: 20px;
+    margin-top: 8px;
+    animation: fadeInUp 0.3s ease;
+}
+
+/* ── Summary Cards ───────────────────────────────────────────────────────────── */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.skeletonGrid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+}
+
+.skeletonCard {
+    height: 100px;
+    border-radius: var(--radius-card, 20px);
+}
+
+/* ── Filter Bar ──────────────────────────────────────────────────────────────── */
+.filterBar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: 14px 20px;
+    background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+    backdrop-filter: blur(var(--blur-md, 20px));
+    -webkit-backdrop-filter: blur(var(--blur-md, 20px));
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.60));
+    border-radius: var(--radius-card, 20px);
+    box-shadow: var(--glass-shadow, 0 8px 32px rgba(0, 0, 0, 0.06));
+}
+
+.filterLabel {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--color-text-secondary, #6b7280);
+    margin-right: 4px;
+}
+
+.chip {
+    padding: 5px 13px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    background: rgba(255, 255, 255, 0.60);
+    color: var(--color-text-secondary, #6b7280);
+    transition: all 0.18s ease;
+    white-space: nowrap;
+}
+
+.chip:hover {
+    border-color: rgba(0, 122, 255, 0.30);
+    background: rgba(0, 122, 255, 0.07);
+    color: var(--color-blue, #007AFF);
+}
+
+.chipActive {
+    background: rgba(0, 122, 255, 0.12);
+    border-color: rgba(0, 122, 255, 0.35);
+    color: var(--color-blue, #007AFF);
+    font-weight: 600;
+}
+
+/* ── Content Panel ───────────────────────────────────────────────────────────── */
+.panel {
+    background: var(--glass-bg, rgba(255, 255, 255, 0.72));
+    backdrop-filter: blur(var(--blur-md, 20px));
+    -webkit-backdrop-filter: blur(var(--blur-md, 20px));
+    border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.60));
+    border-radius: var(--radius-card, 20px);
+    box-shadow: var(--glass-shadow, 0 8px 32px rgba(0, 0, 0, 0.06));
+    overflow: hidden;
+}
+
+.panelHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.panelTitle {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-primary, #1a1a2e);
+}
+
+.panelCount {
+    font-size: 12px;
+    color: var(--color-text-secondary, #6b7280);
+    font-weight: 400;
+}
+
+/* ── Status Badges ───────────────────────────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 3px 9px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+}
+
+.statusVerified {
+    background: rgba(52, 199, 89, 0.12);
+    color: #1a8c3a;
+    border: 1px solid rgba(52, 199, 89, 0.25);
+}
+
+.statusPartial {
+    background: rgba(255, 149, 0, 0.11);
+    color: #c47a00;
+    border: 1px solid rgba(255, 149, 0, 0.24);
+}
+
+.statusFailed {
+    background: rgba(255, 59, 48, 0.10);
+    color: #c0392b;
+    border: 1px solid rgba(255, 59, 48, 0.20);
+}
+
+.statusNotVerifiable {
+    background: rgba(142, 142, 147, 0.10);
+    color: #636366;
+    border: 1px solid rgba(142, 142, 147, 0.22);
+}
+
+.statusPending {
+    background: rgba(0, 122, 255, 0.09);
+    color: #007aff;
+    border: 1px solid rgba(0, 122, 255, 0.18);
+}
+
+/* ── Table values ─────────────────────────────────────────────────────────────── */
+.savingsPos {
+    font-weight: 700;
+    color: #1a8c3a;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.savingsNeg {
+    font-weight: 700;
+    color: #c0392b;
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.savingsNeutral {
+    font-weight: 600;
+    color: var(--color-text-secondary, #6b7280);
+    font-size: 13px;
+    white-space: nowrap;
+}
+
+.predErr {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary, #6b7280);
+    white-space: nowrap;
+}
+
+.resourceName {
+    font-weight: 600;
+    color: #1a1a2e;
+    font-size: 13px;
+}
+
+.recTitle {
+    font-size: 12px;
+    color: #4b5563;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.evidencePill {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-text-secondary, #6b7280);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    font-weight: 500;
+}
+
+/* ── Modal ───────────────────────────────────────────────────────────────────── */
+.modalBody {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 4px 0;
+}
+
+.modalMeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+/* Savings comparison waterfall */
+.waterfallCard {
+    background: linear-gradient(135deg, rgba(52, 199, 89, 0.07) 0%, rgba(0, 122, 255, 0.04) 100%);
+    border: 1px solid rgba(52, 199, 89, 0.18);
+    border-radius: 16px;
+    padding: 18px 20px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 12px;
+    align-items: center;
+}
+
+.waterfallColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.waterfallLabel {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--color-text-secondary, #6b7280);
+}
+
+.waterfallValue {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: #1a1a2e;
+}
+
+.waterfallSub {
+    font-size: 11px;
+    color: var(--color-text-secondary, #6b7280);
+}
+
+.waterfallArrow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    color: #9ca3af;
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.waterfallArrowText {
+    font-size: 10px;
+    color: #9ca3af;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* Savings + error row */
+.savingsResultRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+}
+
+.resultCard {
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.resultCardGreen {
+    background: linear-gradient(135deg, rgba(52, 199, 89, 0.10) 0%, rgba(52, 199, 89, 0.04) 100%);
+    border: 1px solid rgba(52, 199, 89, 0.22);
+}
+
+.resultCardBlue {
+    background: linear-gradient(135deg, rgba(0, 122, 255, 0.08) 0%, rgba(0, 122, 255, 0.03) 100%);
+    border: 1px solid rgba(0, 122, 255, 0.18);
+}
+
+.resultCardAmber {
+    background: linear-gradient(135deg, rgba(255, 149, 0, 0.08) 0%, rgba(255, 149, 0, 0.03) 100%);
+    border: 1px solid rgba(255, 149, 0, 0.20);
+}
+
+.resultLabel {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-secondary, #6b7280);
+}
+
+.resultValue {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+}
+
+.resultValueGreen {
+    color: #1a8c3a;
+}
+
+.resultValueBlue {
+    color: #007aff;
+}
+
+.resultValueAmber {
+    color: #c47a00;
+}
+
+.resultUnit {
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--color-text-secondary, #6b7280);
+}
+
+/* Error bar */
+.errorBarWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.errorBarTrack {
+    height: 5px;
+    border-radius: 3px;
+    background: rgba(255, 149, 0, 0.15);
+    overflow: hidden;
+}
+
+.errorBarFill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, #34c759, #ff9500, #ff3b30);
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.errorBarLabels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10px;
+    color: #9ca3af;
+}
+
+/* Evidence section */
+.evidenceBox {
+    background: rgba(0, 0, 0, 0.025);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 12px;
+    padding: 14px 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px 20px;
+}
+
+.evidenceItem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.evidenceKey {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--color-text-secondary, #6b7280);
+}
+
+.evidenceVal {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+.sampleWarning {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 14px;
+    background: rgba(255, 204, 0, 0.10);
+    border: 1px solid rgba(255, 204, 0, 0.28);
+    border-radius: 10px;
+    font-size: 12.5px;
+    color: #b8860b;
+    font-weight: 500;
+}
+
+/* Section */
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sectionLabel {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--color-blue, #007aff);
+}
+
+.notesBlock {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 11.5px;
+    background: rgba(0, 0, 0, 0.035);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 12px 14px;
+    color: #374151;
+    white-space: pre-wrap;
+    word-break: break-word;
+    line-height: 1.6;
+}
+
+.statusExplainer {
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.55;
+    font-style: italic;
+}
+
+.explainerVerified {
+    background: rgba(52, 199, 89, 0.07);
+    color: #1a5c2a;
+    border: 1px solid rgba(52, 199, 89, 0.18);
+}
+
+.explainerPartial {
+    background: rgba(255, 149, 0, 0.07);
+    color: #7a4e00;
+    border: 1px solid rgba(255, 149, 0, 0.20);
+}
+
+.explainerFailed {
+    background: rgba(255, 59, 48, 0.07);
+    color: #8c1a14;
+    border: 1px solid rgba(255, 59, 48, 0.18);
+}
+
+.explainerNotVerifiable {
+    background: rgba(142, 142, 147, 0.07);
+    color: #4a4a4f;
+    border: 1px solid rgba(142, 142, 147, 0.18);
+}
+
+.divider {
+    height: 1px;
+    background: rgba(0, 0, 0, 0.06);
+    margin: 2px 0;
+}
+
+.resourceInfo {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--color-text-secondary, #6b7280);
+    align-items: center;
+}
+
+/* ── Animations ──────────────────────────────────────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 1200px) {
+    .summaryGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .skeletonGrid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .summaryGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .skeletonGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .waterfallCard {
+        grid-template-columns: 1fr;
+    }
+
+    .waterfallArrow {
+        transform: rotate(90deg);
+    }
+
+    .savingsResultRow {
+        grid-template-columns: 1fr;
+    }
+
+    .evidenceBox {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .summaryGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .skeletonGrid {
+        grid-template-columns: 1fr;
+    }
+}

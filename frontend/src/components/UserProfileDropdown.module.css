@@ -1,0 +1,250 @@
+.dropdownContainer {
+    position: relative;
+    display: inline-block;
+}
+
+/* ── Trigger Capsule ── */
+.triggerButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--lg-surface-medium);
+    border: 1px solid var(--lg-border-strong);
+    padding: 5px 12px 5px 5px;
+    border-radius: var(--radius-pill);
+    cursor: pointer;
+    backdrop-filter: var(--lg-blur-sm);
+    -webkit-backdrop-filter: var(--lg-blur-sm);
+    transition: all var(--transition-fast);
+    box-shadow: var(--lg-shadow-low);
+}
+
+.triggerButton:hover {
+    background: var(--lg-surface-heavy);
+    box-shadow: var(--lg-shadow-mid);
+    transform: translateY(-1px);
+}
+
+/* ── Avatar ── */
+.avatarWrapper {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1c1c1e, #3a3a3c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 700;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.onlineIndicator {
+    position: absolute;
+    bottom: -1px;
+    right: -1px;
+    width: 9px;
+    height: 9px;
+    background: var(--color-system-green);
+    border: 1.5px solid white;
+    border-radius: 50%;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.userName {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    line-height: 1.2;
+    max-width: 120px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.userRole {
+    font-size: 0.7rem;
+    color: var(--color-gray-500);
+    line-height: 1.2;
+}
+
+.chevron {
+    color: var(--color-gray-400);
+    transition: transform var(--transition-fast);
+}
+
+.chevron.rotated {
+    transform: rotate(180deg);
+}
+
+/* ── Dropdown Sheet ── */
+.dropdownMenu {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    width: 272px;
+    background: var(--lg-surface-solid);
+    backdrop-filter: var(--lg-blur-xl);
+    -webkit-backdrop-filter: var(--lg-blur-xl);
+    border: 1px solid var(--lg-border-bright);
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--lg-shadow-float);
+    padding: 12px 0;
+    z-index: 999;
+    overflow: hidden;
+}
+
+/* Specular top highlight */
+.dropdownMenu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 1) 30%,
+            rgba(255, 255, 255, 1) 70%,
+            transparent);
+    pointer-events: none;
+}
+
+.dropdownHeader {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 4px 16px 14px;
+}
+
+.largeAvatarWrapper {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #1c1c1e, #3a3a3c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    flex-shrink: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+.profileDetails h4 {
+    margin: 0;
+    font-size: 0.95rem;
+    font-weight: 650;
+    color: var(--color-gray-900);
+    letter-spacing: -0.01em;
+}
+
+.profileDetails p {
+    margin: 2px 0 6px;
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+.statusBadge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(52, 199, 89, 0.10);
+    color: var(--color-system-green);
+    border: 1px solid rgba(52, 199, 89, 0.22);
+    padding: 2px 8px;
+    border-radius: var(--radius-pill);
+    font-size: 0.7rem;
+    font-weight: 600;
+}
+
+.statusIcon {
+    color: var(--color-system-green);
+}
+
+.divider {
+    height: 1px;
+    background: var(--lg-border-divider);
+    margin: 6px 0;
+}
+
+.menuGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.menuItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 16px;
+    color: var(--color-gray-800);
+    text-decoration: none;
+    font-size: 0.875rem;
+    font-weight: 450;
+    transition: background var(--transition-instant);
+    background: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    letter-spacing: -0.01em;
+}
+
+.menuItem:hover {
+    background: rgba(0, 0, 0, 0.03);
+}
+
+.menuItem svg {
+    color: var(--color-gray-400);
+    flex-shrink: 0;
+    transition: color var(--transition-fast);
+}
+
+.menuItem:hover svg {
+    color: var(--color-gray-700);
+}
+
+.menuItem.danger {
+    color: var(--color-system-red);
+}
+
+.menuItem.danger svg {
+    color: var(--color-system-red);
+}
+
+.menuItem.danger:hover {
+    background: rgba(255, 59, 48, 0.05);
+}
+
+.placeholderTag {
+    margin-left: auto;
+    font-size: 0.65rem;
+    background: rgba(0, 122, 255, 0.08);
+    color: var(--color-system-blue);
+    border: 1px solid rgba(0, 122, 255, 0.15);
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .triggerButton {
+        background: rgba(255, 255, 255, 0.92);
+    }
+
+    .dropdownMenu {
+        background: rgba(255, 255, 255, 0.98);
+    }
+}

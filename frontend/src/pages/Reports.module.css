@@ -1,0 +1,389 @@
+/**
+ * Reports.module.css
+ * OptiWaste — Step 9: Executive FinOps Reports & Audit Ledger
+ * Apple VisionOS / iOS Liquid Glass design language.
+ */
+
+/* ── Page shell ──────────────────────────────────────────────────────────────── */
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 28px 32px;
+    min-height: 100%;
+    background: radial-gradient(ellipse 80% 50% at 70% -5%, rgba(52, 199, 89, 0.05) 0%, transparent 65%),
+        radial-gradient(ellipse 60% 40% at 5% 85%, rgba(0, 122, 255, 0.04) 0%, transparent 60%),
+        var(--color-bg, #f5f5f7);
+}
+
+/* ── Header ──────────────────────────────────────────────────────────────────── */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.headerIcon {
+    width: 44px;
+    height: 44px;
+    background: rgba(52, 199, 89, 0.10);
+    border: 1px solid rgba(52, 199, 89, 0.22);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1a8c3a;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.title {
+    font-size: 1.4rem;
+    font-weight: 740;
+    letter-spacing: -0.03em;
+    color: var(--color-gray-900, #171717);
+    margin: 0 0 4px;
+    line-height: 1.2;
+}
+
+.subtitle {
+    font-size: 13px;
+    color: var(--color-gray-500, #6b7280);
+    line-height: 1.6;
+    max-width: 580px;
+    margin: 0;
+}
+
+.headerActions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* ── KPI grid ────────────────────────────────────────────────────────────────── */
+.kpiGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.skeletonCard {
+    height: 104px;
+    border-radius: 20px;
+}
+
+/* ── Charts row ──────────────────────────────────────────────────────────────── */
+.chartsRow {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* ── Glass panel ─────────────────────────────────────────────────────────────── */
+.panel {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(20px) saturate(1.4);
+    -webkit-backdrop-filter: blur(20px) saturate(1.4);
+    border: 1px solid rgba(255, 255, 255, 0.80);
+    border-radius: 22px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.90);
+    overflow: hidden;
+}
+
+.panelHeader {
+    padding: 18px 22px 14px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.panelTitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--color-gray-900, #171717);
+    letter-spacing: -0.01em;
+}
+
+.panelCount {
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-gray-400, #9ca3af);
+}
+
+.panelSub {
+    font-size: 12px;
+    color: var(--color-gray-400, #9ca3af);
+    margin-top: 3px;
+    display: block;
+}
+
+/* ── Audit header row ────────────────────────────────────────────────────────── */
+.auditHeaderRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filterRow {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* ── Search & filter ─────────────────────────────────────────────────────────── */
+.searchWrap {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    position: absolute;
+    left: 10px;
+    color: var(--color-gray-400, #9ca3af);
+    pointer-events: none;
+}
+
+.searchInput {
+    padding: 7px 12px 7px 30px;
+    font-size: 12.5px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    color: var(--color-gray-900, #171717);
+    outline: none;
+    width: 200px;
+    transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.searchInput:focus {
+    border-color: rgba(0, 122, 255, 0.40);
+    box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.08);
+    background: rgba(255, 255, 255, 0.80);
+}
+
+.statusFilter {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.filterIcon {
+    position: absolute;
+    left: 10px;
+    color: var(--color-gray-400, #9ca3af);
+    pointer-events: none;
+}
+
+.statusSelect {
+    padding: 7px 12px 7px 28px;
+    font-size: 12.5px;
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 10px;
+    color: var(--color-gray-700, #374151);
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+    min-width: 140px;
+}
+
+/* ── Chart ───────────────────────────────────────────────────────────────────── */
+.chartWrap {
+    padding: 16px 20px 12px;
+}
+
+.tooltip {
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    min-width: 152px;
+}
+
+.tooltipTitle {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-gray-900, #171717);
+    margin-bottom: 6px;
+}
+
+/* ── Table cell styles ───────────────────────────────────────────────────────── */
+.resName {
+    font-size: 12.5px;
+    font-weight: 650;
+    color: var(--color-gray-900, #171717);
+    line-height: 1.3;
+}
+
+.resMeta {
+    font-size: 11px;
+    color: var(--color-gray-400, #9ca3af);
+    margin-top: 1px;
+}
+
+.envChip {
+    display: inline-block;
+    font-size: 10.5px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 8px;
+    background: rgba(0, 122, 255, 0.07);
+    color: #007aff;
+    border: 1px solid rgba(0, 122, 255, 0.15);
+    text-transform: capitalize;
+}
+
+.typeChip {
+    font-size: 11px;
+    color: var(--color-gray-500, #6b7280);
+    line-height: 1.4;
+}
+
+.numCell {
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--color-gray-700, #374151);
+    font-variant-numeric: tabular-nums;
+}
+
+.savingsPos {
+    color: #1a8c3a;
+}
+
+.errPct {
+    font-size: 12px;
+    font-weight: 600;
+    color: #b45309;
+    font-variant-numeric: tabular-nums;
+}
+
+.dateCell {
+    font-size: 11.5px;
+    color: var(--color-gray-400, #9ca3af);
+    white-space: nowrap;
+}
+
+/* ── Status badges ───────────────────────────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 100px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.stVerified {
+    background: rgba(52, 199, 89, 0.12);
+    border: 1px solid rgba(52, 199, 89, 0.28);
+    color: #1a8c3a;
+}
+
+.stPartial {
+    background: rgba(255, 165, 0, 0.10);
+    border: 1px solid rgba(255, 165, 0, 0.26);
+    color: #b45309;
+}
+
+.stFailed {
+    background: rgba(255, 59, 48, 0.09);
+    border: 1px solid rgba(255, 59, 48, 0.24);
+    color: #c0392b;
+}
+
+.stNa {
+    background: rgba(142, 142, 147, 0.09);
+    border: 1px solid rgba(142, 142, 147, 0.20);
+    color: #6b7280;
+}
+
+.stPending {
+    background: rgba(0, 122, 255, 0.07);
+    border: 1px solid rgba(0, 122, 255, 0.20);
+    color: #007aff;
+}
+
+.stAccepted {
+    background: rgba(0, 122, 255, 0.07);
+    border: 1px solid rgba(0, 122, 255, 0.20);
+    color: #007aff;
+}
+
+/* ── Print optimizations ─────────────────────────────────────────────────────── */
+@media print {
+    body>* {
+        visibility: hidden;
+    }
+
+    .page,
+    .page * {
+        visibility: visible;
+    }
+
+    .page {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .headerActions {
+        display: none !important;
+    }
+}
+
+/* ── Responsive ──────────────────────────────────────────────────────────────── */
+@media (max-width: 1100px) {
+    .kpiGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .chartsRow {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .page {
+        padding: 16px;
+        gap: 16px;
+    }
+
+    .kpiGrid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .header,
+    .auditHeaderRow {
+        flex-direction: column;
+    }
+
+    .filterRow {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .kpiGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .searchInput {
+        width: 100%;
+    }
+}

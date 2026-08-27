@@ -1,0 +1,8 @@
+from app.repositories.base import CRUDBase
+from app.models.recommendation_verification import RecommendationVerification
+from app.schemas.recommendation_verification import RecommendationVerificationCreate, RecommendationVerificationUpdate
+
+class RepositoryRecommendationVerification(CRUDBase[RecommendationVerification, RecommendationVerificationCreate, RecommendationVerificationUpdate]):
+    pass
+
+recommendation_verification = RepositoryRecommendationVerification(RecommendationVerification)

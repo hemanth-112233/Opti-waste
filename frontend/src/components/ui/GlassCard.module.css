@@ -1,0 +1,65 @@
+.glassCard {
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--lg-border-strong);
+    box-shadow: var(--lg-shadow-mid);
+    padding: 1.5rem;
+    overflow: hidden;
+    position: relative;
+    transition:
+        transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast);
+}
+
+/* Top specular highlight */
+.glassCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.90) 20%,
+            rgba(255, 255, 255, 0.90) 80%,
+            transparent);
+    border-radius: 999px;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.light {
+    background: var(--lg-surface-light);
+    backdrop-filter: var(--lg-blur-md);
+    -webkit-backdrop-filter: var(--lg-blur-md);
+}
+
+.heavy {
+    background: var(--lg-surface-heavy);
+    backdrop-filter: var(--lg-blur-lg);
+    -webkit-backdrop-filter: var(--lg-blur-lg);
+}
+
+.ultra-light {
+    background: var(--lg-surface-ultra);
+    backdrop-filter: var(--lg-blur-sm);
+    -webkit-backdrop-filter: var(--lg-blur-sm);
+}
+
+.hoverable:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--lg-shadow-high);
+    background: var(--lg-surface-heavy);
+}
+
+/* Backdrop-filter fallback */
+@supports not (backdrop-filter: blur(1px)) {
+    .light {
+        background: rgba(255, 255, 255, 0.90);
+    }
+
+    .heavy {
+        background: rgba(255, 255, 255, 0.96);
+    }
+}

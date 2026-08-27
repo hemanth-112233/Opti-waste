@@ -1,0 +1,8 @@
+from app.repositories.base import CRUDBase
+from app.models.optimization_recommendation import OptimizationRecommendation
+from app.schemas.optimization_recommendation import OptimizationRecommendationCreate, OptimizationRecommendationUpdate
+
+class RepositoryOptimizationRecommendation(CRUDBase[OptimizationRecommendation, OptimizationRecommendationCreate, OptimizationRecommendationUpdate]):
+    pass
+
+optimization_recommendation = RepositoryOptimizationRecommendation(OptimizationRecommendation)

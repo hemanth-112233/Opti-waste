@@ -1,0 +1,8 @@
+from app.repositories.base import CRUDBase
+from app.models.waste_assessment_history import WasteAssessmentHistory
+from app.schemas.waste_assessment_history import WasteAssessmentHistoryCreate, WasteAssessmentHistoryUpdate
+
+class RepositoryWasteAssessmentHistory(CRUDBase[WasteAssessmentHistory, WasteAssessmentHistoryCreate, WasteAssessmentHistoryUpdate]):
+    pass
+
+waste_assessment_history = RepositoryWasteAssessmentHistory(WasteAssessmentHistory)

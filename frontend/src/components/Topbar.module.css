@@ -1,0 +1,157 @@
+/* ══════════════════════════════════════════════════════════
+   TOPBAR — Premium Floating Glass Toolbar
+   ══════════════════════════════════════════════════════════ */
+.topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--topbar-height);
+    padding: 0 1.25rem;
+    margin: 0.75rem 0.75rem 0;
+
+    /* Floating Liquid Glass */
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(40px) saturate(200%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    border-radius: var(--radius-3xl);
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.06),
+        0 2px 8px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 rgba(255, 255, 255, 0.95);
+
+    position: sticky;
+    top: 0.75rem;
+    z-index: 40;
+    flex-shrink: 0;
+}
+
+/* Specular top-edge highlight */
+.topbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 1) 25%,
+            rgba(255, 255, 255, 1) 75%,
+            transparent);
+    border-radius: 999px;
+    pointer-events: none;
+}
+
+.leftSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.dateWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.dateText {
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--color-gray-500);
+    letter-spacing: 0.01em;
+}
+
+.centerSection {
+    flex: 1.8;
+    display: flex;
+    justify-content: center;
+    max-width: 520px;
+}
+
+.searchContainer {
+    width: 100%;
+}
+
+.rightSection {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.75rem;
+}
+
+.newActionBtn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0.45rem 1rem;
+    background: var(--lg-dark-surface) !important;
+    border: 1px solid rgba(255, 255, 255, 0.10) !important;
+    border-radius: var(--radius-pill) !important;
+    color: white !important;
+    font-size: 0.83rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+}
+
+.newActionBtn:hover {
+    background: var(--lg-dark-hover) !important;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.30);
+    transform: translateY(-1px);
+}
+
+.iconGroup {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.iconBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    color: var(--color-gray-600);
+    background: var(--lg-surface-medium);
+    backdrop-filter: var(--lg-blur-sm);
+    -webkit-backdrop-filter: var(--lg-blur-sm);
+    border: 1px solid var(--lg-border-medium);
+    box-shadow: var(--lg-shadow-low);
+    transition: all var(--transition-fast);
+}
+
+.iconBtn:hover {
+    background: var(--lg-surface-heavy);
+    color: var(--color-gray-900);
+    box-shadow: var(--lg-shadow-mid);
+    transform: translateY(-1px);
+}
+
+.notificationDot {
+    position: absolute;
+    top: 7px;
+    right: 8px;
+    width: 7px;
+    height: 7px;
+    background: var(--color-system-red);
+    border-radius: 50%;
+    border: 1.5px solid white;
+}
+
+/* Responsive — below tablet, flush with edges */
+@media (max-width: 768px) {
+    .topbar {
+        margin: 0.5rem 0.5rem 0;
+        border-radius: var(--radius-2xl);
+        padding: 0 1rem;
+    }
+
+    .centerSection {
+        display: none;
+    }
+}

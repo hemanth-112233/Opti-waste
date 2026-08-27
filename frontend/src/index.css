@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap');
+
+/* ════════════════════════════════════════════════════════
+   OPTIWASTE — iOS 26 LIQUID GLASS DESIGN SYSTEM
+   Premium Apple-inspired enterprise FinOps platform
+   ════════════════════════════════════════════════════════ */
+:root {
+  /* ── Typography ────────────────────────────────────── */
+  --font-family-sans: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Inter", "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-feature: "ss01" on, "cv01" on, "cv11" on;
+
+  /* ── Base Palette ───────────────────────────────────── */
+  --color-pure-white: #FFFFFF;
+  --color-soft-white: #FAFAFA;
+  --color-frost-white: #F2F2F7;
+  --color-page-bg: #EEEEEF;
+  --color-black: #000000;
+
+  /* Grays (Apple HIG) */
+  --color-gray-900: #1D1D1F;
+  --color-gray-800: #333336;
+  --color-gray-700: #424245;
+  --color-gray-600: #515154;
+  --color-gray-500: #86868B;
+  --color-gray-400: #A1A1A6;
+  --color-gray-300: #D2D2D7;
+  --color-gray-200: #E5E5EA;
+  --color-gray-100: #F2F2F7;
+  --color-gray-50: #FBFBFD;
+
+  /* Apple System Colors */
+  --color-system-blue: #007AFF;
+  --color-system-green: #34C759;
+  --color-system-orange: #FF9500;
+  --color-system-red: #FF3B30;
+  --color-system-purple: #AF52DE;
+  --color-system-cyan: #32ADE6;
+  --color-system-indigo: #5856D6;
+  --color-system-pink: #FF2D55;
+  --color-system-teal: #5AC8FA;
+  --color-system-gray: #8E8E93;
+
+  /* ── Liquid Glass Surfaces ──────────────────────────── */
+  /* Ordered from most to least opaque */
+  --lg-surface-solid: rgba(255, 255, 255, 0.96);
+  --lg-surface-heavy: rgba(255, 255, 255, 0.80);
+  --lg-surface-medium: rgba(255, 255, 255, 0.60);
+  --lg-surface-light: rgba(255, 255, 255, 0.42);
+  --lg-surface-ultra: rgba(255, 255, 255, 0.22);
+  --lg-surface-overlay: rgba(255, 255, 255, 0.12);
+
+  /* Dark glass for primary buttons */
+  --lg-dark-surface: rgba(28, 28, 30, 0.92);
+  --lg-dark-hover: rgba(28, 28, 30, 0.84);
+
+  /* ── Liquid Glass Borders ───────────────────────────── */
+  --lg-border-bright: rgba(255, 255, 255, 0.90);
+  --lg-border-strong: rgba(255, 255, 255, 0.70);
+  --lg-border-medium: rgba(255, 255, 255, 0.50);
+  --lg-border-subtle: rgba(0, 0, 0, 0.07);
+  --lg-border-divider: rgba(0, 0, 0, 0.05);
+
+  /* ── Liquid Glass Shadows ───────────────────────────── */
+  /* Multi-layer shadows for depth illusion */
+  --lg-shadow-flush: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --lg-shadow-low:
+    0 2px 8px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.70);
+  --lg-shadow-mid:
+    0 4px 16px rgba(0, 0, 0, 0.07),
+    0 2px 6px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.80);
+  --lg-shadow-high:
+    0 8px 32px rgba(0, 0, 0, 0.09),
+    0 4px 12px rgba(0, 0, 0, 0.06),
+    inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  --lg-shadow-float:
+    0 16px 48px rgba(0, 0, 0, 0.12),
+    0 8px 20px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90);
+  --lg-shadow-lifted:
+    0 24px 64px rgba(0, 0, 0, 0.14),
+    0 12px 28px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.90);
+
+  /* ── Backdrop Blur Levels ───────────────────────────── */
+  --lg-blur-sm: blur(12px) saturate(180%);
+  --lg-blur-md: blur(24px) saturate(200%);
+  --lg-blur-lg: blur(40px) saturate(220%);
+  --lg-blur-xl: blur(60px) saturate(240%);
+  --lg-blur-hero: blur(80px) saturate(250%);
+
+  /* ── Border Radii ───────────────────────────────────── */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+  --radius-pill: 9999px;
+
+  /* ── Structural ─────────────────────────────────────── */
+  --sidebar-width: 260px;
+  --topbar-height: 68px;
+
+  /* ── Apple Spring Transitions ───────────────────────── */
+  --transition-instant: 0.08s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-fast: 0.18s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition-normal: 0.30s cubic-bezier(0.34, 1.56, 0.64, 1);
+  --transition-smooth: 0.45s cubic-bezier(0.34, 1.20, 0.64, 1);
+
+  /* ── Motion System Variables ────────────────────────── */
+  /* Mirrored in lib/motionSystem.ts for Framer Motion */
+  --motion-spring-stiffness-gentle: 220;
+  --motion-spring-stiffness-standard: 320;
+  --motion-spring-stiffness-snappy: 480;
+  --motion-spring-damping-gentle: 28;
+  --motion-spring-damping-standard: 28;
+  --motion-spring-damping-snappy: 32;
+  --motion-duration-instant: 0.08s;
+  --motion-duration-fast: 0.18s;
+  --motion-duration-normal: 0.30s;
+  /* Reduced-motion flag — readable by JS if needed */
+  --motion-reduce: 0;
+
+  /* ── Semantic Material Levels ───────────────────────── */
+  /* Level 1: page sections, low-priority containers */
+  --material-l1-bg: var(--lg-surface-light);
+  --material-l1-blur: var(--lg-blur-sm);
+  --material-l1-border: var(--lg-border-subtle);
+  --material-l1-shadow: var(--lg-shadow-flush);
+  /* Level 2: standard cards, panels */
+  --material-l2-bg: var(--lg-surface-medium);
+  --material-l2-blur: var(--lg-blur-md);
+  --material-l2-border: var(--lg-border-strong);
+  --material-l2-shadow: var(--lg-shadow-low);
+  /* Level 3: floating controls, navigation */
+  --material-l3-bg: var(--lg-surface-heavy);
+  --material-l3-blur: var(--lg-blur-lg);
+  --material-l3-border: var(--lg-border-bright);
+  --material-l3-shadow: var(--lg-shadow-mid);
+  /* Level 4: modals, dialogs, high-priority overlays */
+  --material-l4-bg: var(--lg-surface-solid);
+  --material-l4-blur: var(--lg-blur-xl);
+  --material-l4-border: var(--lg-border-bright);
+  --material-l4-shadow: var(--lg-shadow-lifted);
+
+  /* ── Ambient Accent Glows (toned down for neutral aesthetic) ── */
+  --glow-blue: rgba(0, 122, 255, 0.07);
+  --glow-cyan: rgba(50, 173, 230, 0.05);
+  --glow-purple: rgba(88, 86, 214, 0.05);
+  --glow-green: rgba(52, 199, 89, 0.05);
+  --glow-pink: rgba(255, 45, 85, 0.04);
+
+  /* Legacy compat aliases */
+  --bg-app: var(--color-page-bg);
+  --bg-glass-heavy: var(--lg-surface-heavy);
+  --bg-glass-medium: var(--lg-surface-medium);
+  --bg-glass-light: var(--lg-surface-light);
+  --bg-glass-ultra-light: var(--lg-surface-ultra);
+  --bg-element-hover: rgba(0, 0, 0, 0.03);
+  --bg-element-active: rgba(0, 0, 0, 0.06);
+  --border-glass-solid: var(--lg-border-subtle);
+  --border-glass-light: var(--lg-border-divider);
+  --border-glass-white: var(--lg-border-strong);
+  --shadow-sm: var(--lg-shadow-flush);
+  --shadow-md: var(--lg-shadow-low);
+  --shadow-lg: var(--lg-shadow-mid);
+  --shadow-xl: var(--lg-shadow-high);
+  --shadow-glass: var(--lg-shadow-mid);
+  --shadow-float: var(--lg-shadow-float);
+}
+
+/* ── Universal Reset ──────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family-sans);
+  font-feature-settings: var(--font-feature);
+  /* Neutral Apple light canvas — barely-there ambient tint */
+  background:
+    radial-gradient(ellipse 90% 70% at 10% 5%, rgba(0, 110, 255, 0.018) 0%, transparent 55%),
+    radial-gradient(ellipse 70% 60% at 90% 95%, rgba(88, 86, 214, 0.022) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 55% 50%, rgba(50, 173, 230, 0.012) 0%, transparent 60%),
+    linear-gradient(170deg, #F2F2F4 0%, #F4F4F6 50%, #EEEEF2 100%);
+  background-attachment: fixed;
+  color: var(--color-gray-900);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  line-height: 1.5;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  border: none;
+  font-family: inherit;
+  cursor: pointer;
+  background: none;
+}
+
+input,
+select,
+textarea {
+  font-family: inherit;
+  border: none;
+  outline: none;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* ── Liquid Glass Utility Classes ────────────────────── */
+
+/* Level 1 — Subtle: page sections, low-priority containers */
+.glass-l1 {
+  background: var(--material-l1-bg);
+  backdrop-filter: var(--material-l1-blur);
+  -webkit-backdrop-filter: var(--material-l1-blur);
+  border: 1px solid var(--material-l1-border);
+  box-shadow: var(--material-l1-shadow);
+}
+
+/* Level 2 — Standard: cards, panels, dashboard sections */
+.glass-l2 {
+  background: var(--material-l2-bg);
+  backdrop-filter: var(--material-l2-blur);
+  -webkit-backdrop-filter: var(--material-l2-blur);
+  border: 1px solid var(--material-l2-border);
+  box-shadow: var(--material-l2-shadow);
+}
+
+/* Level 3 — Strong: floating controls, navigation, important cards */
+.glass-l3 {
+  background: var(--material-l3-bg);
+  backdrop-filter: var(--material-l3-blur);
+  -webkit-backdrop-filter: var(--material-l3-blur);
+  border: 1px solid var(--material-l3-border);
+  box-shadow: var(--material-l3-shadow);
+}
+
+/* Level 4 — Premium: modals, dialogs, floating menus */
+.glass-l4 {
+  background: var(--material-l4-bg);
+  backdrop-filter: var(--material-l4-blur);
+  -webkit-backdrop-filter: var(--material-l4-blur);
+  border: 1px solid var(--material-l4-border);
+  box-shadow: var(--material-l4-shadow);
+}
+
+/* Legacy aliases — kept for backward compatibility */
+.liquid-glass {
+  background: var(--lg-surface-medium);
+  backdrop-filter: var(--lg-blur-md);
+  -webkit-backdrop-filter: var(--lg-blur-md);
+  border: 1px solid var(--lg-border-strong);
+  box-shadow: var(--lg-shadow-mid);
+}
+
+.liquid-glass-heavy {
+  background: var(--lg-surface-heavy);
+  backdrop-filter: var(--lg-blur-lg);
+  -webkit-backdrop-filter: var(--lg-blur-lg);
+  border: 1px solid var(--lg-border-bright);
+  box-shadow: var(--lg-shadow-high);
+}
+
+.glass-panel {
+  background: var(--lg-surface-medium);
+  backdrop-filter: var(--lg-blur-md);
+  -webkit-backdrop-filter: var(--lg-blur-md);
+  border: 1px solid var(--lg-border-strong);
+  box-shadow: var(--lg-shadow-mid);
+}
+
+/* ── Typography Utils ─────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-gray-900) 0%, var(--color-gray-600) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Global Animations ────────────────────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes liquidShimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes ambientFloat {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  33% {
+    transform: translate(2%, -1%) scale(1.01);
+  }
+
+  66% {
+    transform: translate(-1%, 1%) scale(0.99);
+  }
+}
+
+/* ── Reduced Motion ───────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    /* Signal to JS-driven animations (Framer Motion reads this) */
+    --motion-reduce: 1;
+    /* Collapse all CSS transitions / keyframe animations */
+    --transition-instant: 0.001s linear;
+    --transition-fast: 0.001s linear;
+    --transition-normal: 0.001s linear;
+    --transition-smooth: 0.001s linear;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ── Scrollbar ────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.20);
+}
+
+/* ── Focus Ring ───────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-system-blue);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}

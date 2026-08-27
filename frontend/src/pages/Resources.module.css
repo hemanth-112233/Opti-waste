@@ -1,0 +1,177 @@
+.container {
+    padding: 2rem;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-white);
+}
+
+.addButton {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-cyan-500);
+    color: var(--color-white);
+    border-radius: 0.75rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    box-shadow: var(--shadow-glow-cyan);
+}
+
+.addButton:hover {
+    background-color: var(--color-cyan-400);
+    transform: translateY(-2px);
+}
+
+/* Summary Cards Grid */
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.summaryCard {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border-white-10);
+    border-radius: 1rem;
+    padding: 1.25rem;
+}
+
+.summaryCard p {
+    color: var(--color-slate-400);
+    font-size: 0.875rem;
+    margin-bottom: 0.5rem;
+}
+
+.summaryCard h3 {
+    color: var(--color-white);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+
+/* Toolbar (Search & Filter) */
+.toolbar {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.searchInput {
+    flex: 1;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-white-10);
+    color: var(--color-white);
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.searchInput:focus {
+    outline: none;
+    border-color: var(--color-cyan-500);
+}
+
+/* Table Area */
+.tableContainer {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+    backdrop-filter: blur(24px);
+    border: 1px solid var(--border-white-10);
+    border-radius: 1rem;
+    overflow: hidden;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--color-slate-400);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--border-white-10);
+}
+
+.table td {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-white-5);
+    color: var(--color-slate-300);
+    font-size: 0.875rem;
+}
+
+.table tr:hover {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.badge {
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.badgeActive {
+    background-color: rgba(16, 185, 129, 0.1);
+    color: var(--color-green-500);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.badgeInactive {
+    background-color: rgba(244, 63, 94, 0.1);
+    color: var(--color-rose-400);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+}
+
+.badgeWarning {
+    background-color: rgba(245, 158, 11, 0.1);
+    color: var(--color-amber-500);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+}
+
+.actionCell {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+}
+
+.actionBtn {
+    padding: 0.5rem;
+    color: var(--color-slate-400);
+    border-radius: 0.5rem;
+    background-color: transparent;
+    transition: all 0.2s;
+    font-size: 0.875rem;
+}
+
+.actionBtn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--color-white);
+}
+
+.actionBtnEdit:hover {
+    color: var(--color-blue-500);
+}
+
+.actionBtnDelete:hover {
+    color: var(--color-rose-500);
+}

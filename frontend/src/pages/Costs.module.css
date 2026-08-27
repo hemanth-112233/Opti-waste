@@ -1,0 +1,131 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-bottom: 4rem;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.03em;
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: var(--color-gray-500);
+    margin-top: 0.25rem;
+}
+
+.summaryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.5rem;
+}
+
+.chartsGrid {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 900px) {
+    .chartsGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.tableCard {
+    width: 100%;
+}
+
+.tableTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-gray-900);
+    margin-bottom: 1rem;
+}
+
+.emptyState {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--color-gray-400);
+    font-size: 0.875rem;
+}
+
+.resourceCell {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: 500;
+    color: var(--color-gray-900);
+}
+
+.resourceIcon {
+    width: 16px;
+    height: 16px;
+    color: var(--color-system-blue);
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.35rem 0.65rem;
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.badgeSuccess {
+    background: rgba(52, 199, 89, 0.15);
+    color: var(--color-system-green);
+}
+
+.badgeWarning {
+    background: rgba(255, 204, 0, 0.15);
+    color: var(--color-system-yellow);
+}
+
+.actionGroup {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.5rem;
+}
+
+.actionBtn {
+    background: transparent;
+    border: 1px solid var(--border-glass-solid);
+    padding: 0.35rem 0.75rem;
+    border-radius: var(--radius-md);
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--color-gray-700);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.actionBtn:hover {
+    background: var(--bg-element-hover);
+    color: var(--color-gray-900);
+}
+
+.actionBtnDelete {
+    color: var(--color-system-red);
+    border-color: rgba(255, 59, 48, 0.2);
+}
+
+.actionBtnDelete:hover {
+    background: rgba(255, 59, 48, 0.1);
+    color: var(--color-system-red);
+}

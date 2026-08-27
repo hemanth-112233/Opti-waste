@@ -1,0 +1,100 @@
+:root {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --color-slate-950: #020617;
+  --color-slate-900: #0f172a;
+  --color-slate-800: #1e293b;
+  --color-slate-500: #64748b;
+  --color-slate-400: #94a3b8;
+  --color-slate-300: #cbd5e1;
+  --color-slate-200: #e2e8f0;
+  --color-slate-100: #f1f5f9;
+
+  --color-cyan-400: #22d3ee;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
+
+  --color-blue-500: #3b82f6;
+  --color-teal-500: #14b8a6;
+  --color-purple-500: #a855f7;
+  --color-rose-400: #fb7185;
+  --color-rose-500: #f43f5e;
+  --color-rose-600: #e11d48;
+  --color-amber-500: #f59e0b;
+  --color-green-500: #10b981;
+  --color-emerald-400: #34d399;
+
+  --color-white: #ffffff;
+  --color-black: #000000;
+  --bg-white-5: rgba(255, 255, 255, 0.05);
+  --bg-white-10: rgba(255, 255, 255, 0.1);
+  --bg-white-20: rgba(255, 255, 255, 0.2);
+  --border-white-5: rgba(255, 255, 255, 0.05);
+  --border-white-10: rgba(255, 255, 255, 0.1);
+  --border-white-20: rgba(255, 255, 255, 0.2);
+  --bg-black-20: rgba(0, 0, 0, 0.2);
+  --bg-black-30: rgba(0, 0, 0, 0.3);
+
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  --shadow-glow-cyan: 0 4px 14px 0 rgba(6, 182, 212, 0.2);
+  --shadow-glow-rose: 0 4px 14px 0 rgba(244, 63, 94, 0.2);
+}
+
+/* CSS Reset & Defaults */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-slate-900);
+  color: var(--color-slate-100);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  all: unset;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: inherit;
+}
+
+/* Selection */
+::selection {
+  background-color: rgba(6, 182, 212, 0.3);
+}
+
+/* Scrollbar Hide Utility if needed globally */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

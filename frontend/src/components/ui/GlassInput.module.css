@@ -1,0 +1,109 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    width: 100%;
+}
+
+.label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--color-gray-600);
+    letter-spacing: 0.01em;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: 0.72rem 1rem;
+    font-size: 0.9rem;
+    color: var(--color-gray-900);
+    /* Liquid Glass input surface */
+    background: var(--lg-surface-heavy);
+    backdrop-filter: var(--lg-blur-sm);
+    -webkit-backdrop-filter: var(--lg-blur-sm);
+    border: 1px solid var(--lg-border-strong);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+    box-shadow: var(--lg-shadow-low);
+    outline: none;
+}
+
+.input::placeholder {
+    color: var(--color-gray-400);
+}
+
+.input:focus {
+    border-color: rgba(0, 122, 255, 0.50);
+    box-shadow:
+        0 0 0 3px rgba(0, 122, 255, 0.12),
+        var(--lg-shadow-low);
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.input:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background: var(--color-gray-50);
+}
+
+.hasIconLeft {
+    padding-left: 2.5rem;
+}
+
+.hasIconRight {
+    padding-right: 2.5rem;
+}
+
+.iconContainer {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-gray-400);
+    pointer-events: none;
+    transition: color var(--transition-fast);
+}
+
+.iconLeft {
+    left: 0.8rem;
+}
+
+.iconRight {
+    right: 0.8rem;
+}
+
+.inputWrapper:focus-within .iconContainer {
+    color: var(--color-system-blue);
+}
+
+.hasError {
+    border-color: rgba(255, 59, 48, 0.50);
+}
+
+.hasError:focus {
+    box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.14);
+}
+
+.helperText {
+    font-size: 0.75rem;
+    color: var(--color-gray-500);
+}
+
+.errorMessage {
+    color: var(--color-system-red);
+    font-size: 0.75rem;
+}
+
+@supports not (backdrop-filter: blur(1px)) {
+    .input {
+        background: rgba(255, 255, 255, 0.95);
+    }
+}

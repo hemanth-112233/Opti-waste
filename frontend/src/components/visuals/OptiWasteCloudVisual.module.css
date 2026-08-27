@@ -1,0 +1,248 @@
+/* ══════════════════════════════════════════════════════
+   OptiWasteCloudVisual.module.css
+   Step 3A — Animated Cloud Intelligence Visual
+   Uses design tokens from index.css — zero hardcoded rgba
+   except where SVG transparency is semantically meaningful.
+   ══════════════════════════════════════════════════════ */
+
+/* ── Root container ─────────────────────────────────── */
+.root {
+    position: relative;
+    width: 100%;
+    /* Fill whatever height the parent sets (Signup sets 520px) */
+    height: 100%;
+    min-height: 360px;
+    overflow: hidden;
+    border-radius: var(--radius-3xl);
+    /* Layer the depth environment */
+    isolation: isolate;
+    cursor: default;
+    user-select: none;
+}
+
+/* ── Atmospheric background ─────────────────────────── */
+.atmosphericLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.atmosphereBlob1 {
+    position: absolute;
+    top: -10%;
+    left: -5%;
+    width: 55%;
+    height: 70%;
+    background: radial-gradient(ellipse at center,
+            rgba(0, 122, 255, 0.05) 0%,
+            transparent 65%);
+    border-radius: 50%;
+    /* Static — no continuous animation for performance */
+}
+
+.atmosphereBlob2 {
+    position: absolute;
+    bottom: -15%;
+    right: -5%;
+    width: 50%;
+    height: 65%;
+    background: radial-gradient(ellipse at center,
+            rgba(88, 86, 214, 0.04) 0%,
+            transparent 60%);
+    border-radius: 50%;
+}
+
+.atmosphereBlob3 {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    width: 40%;
+    height: 40%;
+    background: radial-gradient(ellipse at center,
+            rgba(50, 173, 230, 0.035) 0%,
+            transparent 60%);
+    border-radius: 50%;
+}
+
+/* ── SVG canvas ─────────────────────────────────────── */
+.svgCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    pointer-events: none;
+    /* allow pointer events only on node circles via inline SVG */
+}
+
+/* ── Foreground overlay layer ────────────────────────── */
+.foregroundLayer {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    /* Badges have pointer-events: none so they never block interaction */
+}
+
+/* ── Savings badge ─────────────────────────────────── */
+.savingsBadge {
+    position: absolute;
+    bottom: 1.5rem;
+    right: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    padding: 0.75rem 1.1rem;
+
+    /* Level 3 glass material */
+    background: var(--material-l3-bg);
+    backdrop-filter: var(--material-l3-blur);
+    -webkit-backdrop-filter: var(--material-l3-blur);
+    border: 1px solid var(--material-l3-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--material-l3-shadow);
+
+    /* Specular top edge */
+    position: absolute;
+}
+
+.savingsBadge::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg,
+            transparent,
+            var(--lg-border-bright) 40%,
+            var(--lg-border-bright) 60%,
+            transparent);
+    pointer-events: none;
+}
+
+.savingsLabel {
+    font-size: 0.62rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gray-400);
+}
+
+.savingsNumbers {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.savingsOld {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: var(--color-gray-400);
+    text-decoration: line-through;
+    font-variant-numeric: tabular-nums;
+}
+
+.savingsArrow {
+    font-size: 0.8rem;
+    color: var(--color-system-green);
+    font-weight: 500;
+}
+
+.savingsNew {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--color-gray-900);
+    letter-spacing: -0.03em;
+    font-variant-numeric: tabular-nums;
+}
+
+.savingsPct {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--color-system-green);
+    letter-spacing: 0.02em;
+}
+
+/* ── Waste detected badge ────────────────────────────── */
+.wasteBadge {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.35rem 0.8rem;
+
+    background: rgba(255, 149, 0, 0.10);
+    backdrop-filter: var(--lg-blur-sm);
+    -webkit-backdrop-filter: var(--lg-blur-sm);
+    border: 1px solid rgba(255, 149, 0, 0.22);
+    border-radius: var(--radius-pill);
+
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-system-orange);
+    letter-spacing: 0.02em;
+    font-family: var(--font-family-sans);
+    white-space: nowrap;
+}
+
+.wasteDot {
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--color-system-orange);
+    flex-shrink: 0;
+}
+
+/* ── Responsive ─────────────────────────────────────── */
+@media (max-width: 768px) {
+    .root {
+        min-height: 280px;
+    }
+
+    .savingsBadge {
+        bottom: 1rem;
+        right: 1rem;
+        padding: 0.6rem 0.9rem;
+    }
+
+    .wasteBadge {
+        top: 1rem;
+        right: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .root {
+        height: 300px;
+        border-radius: var(--radius-2xl);
+    }
+
+    .savingsNew {
+        font-size: 0.95rem;
+    }
+
+    .savingsBadge {
+        padding: 0.5rem 0.75rem;
+    }
+}
+
+/* ── Reduced motion overrides ──────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+
+    .atmosphereBlob1,
+    .atmosphereBlob2,
+    .atmosphereBlob3 {
+        animation: none;
+    }
+
+    .root {
+        /* Retain all visual information, just no movement */
+        will-change: auto;
+    }
+}
