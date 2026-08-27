@@ -5,13 +5,17 @@ dotenv.config();
 
 const envSchema = z.object({
     PORT: z.string().default('8000'),
-    MONGODB_URI: z.string().min(1),
+    MONGODB_URI: z.string().trim().min(1),
     JWT_SECRET: z.string().min(1),
     JWT_REFRESH_SECRET: z.string().min(1),
     TOKEN_EXPIRY: z.string().default('1h'),
     REFRESH_EXPIRY: z.string().default('7d'),
     CORS_ORIGIN: z.string().default('http://localhost:5173'),
 });
+
+if (!process.env.MONGODB_URI?.trim()) {
+    throw new Error('MONGODB_URI environment variable is required');
+}
 
 const _env = envSchema.safeParse(process.env);
 
