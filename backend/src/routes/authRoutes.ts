@@ -84,7 +84,7 @@ const handleSignup = async (req: any, res: any, next: any) => {
         const isFirstUser = existingUserCount === 0;
 
         const assignedRole = isFirstUser
-            ? await import('../models/Role').then(({ Role }) =>
+            ? await import('../models/Role.js').then(({ Role }) =>
                 Role.findOne({ name: ROLES.ADMINISTRATOR })
             )
             : await AuthService.getUserRole();
@@ -214,7 +214,7 @@ router.post('/setup-admin', async (req, res, next) => {
         // Ensure canonical roles exist
         await AuthService.seedDefaultRoles();
 
-        const { Role } = await import('../models/Role');
+        const { Role } = await import('../models/Role.js');
         const adminRole = await Role.findOne({ name: ROLES.ADMINISTRATOR });
         if (!adminRole) {
             return res.status(500).json({ success: false, message: 'Administrator role not found after seeding' });
