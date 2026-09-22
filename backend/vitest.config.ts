@@ -4,6 +4,14 @@ export default defineConfig({
   test: {
     environment: 'node',
     globals: true,
+    pool: 'threads',
+    poolOptions: {
+      threads: {
+        singleThread: true,
+      },
+    },
+    testTimeout: 30000,
+    hookTimeout: 30000,
     include: ['src/tests/unit/**/*.test.ts', 'src/tests/integration/**/*.test.ts'],
     exclude: ['node_modules', 'dist', 'src/services/__tests__/WasteDetectionService.test.ts'],
     coverage: {
