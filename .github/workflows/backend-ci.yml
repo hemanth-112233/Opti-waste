@@ -31,15 +31,19 @@ jobs:
           cache-dependency-path: backend/package-lock.json
 
       - name: Install backend dependencies
+        working-directory: backend
         run: npm ci
 
       - name: Run automated tests
+        working-directory: backend
         run: npm test -- --run
 
       - name: Generate coverage report
+        working-directory: backend
         run: npm run test:coverage
 
       - name: Build TypeScript backend
+        working-directory: backend
         run: npm run build
 
       - name: Upload coverage artifact
