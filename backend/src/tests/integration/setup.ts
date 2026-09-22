@@ -3,6 +3,7 @@ import { MongoMemoryServer } from 'mongodb-memory-server';
 import mongoose from 'mongoose';
 
 process.env.NODE_ENV = 'test';
+process.env.MONGODB_URI ??= 'mongodb://127.0.0.1:27017/optiwaste_test';
 process.env.JWT_SECRET ??= 'test-jwt-secret';
 process.env.JWT_REFRESH_SECRET ??= 'test-refresh-secret';
 process.env.TOKEN_EXPIRY ??= '1h';
