@@ -38,4 +38,5 @@ frontend/dist/
 .DS_Store
 Thumbs.db
 
+# Coverage
 backend/coverage/
