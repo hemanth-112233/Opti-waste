@@ -2,11 +2,7 @@ name: Backend CI
 
 on:
   push:
-    branches:
-      - main
   pull_request:
-    branches:
-      - main
 
 permissions:
   contents: read
@@ -34,13 +30,9 @@ jobs:
         working-directory: backend
         run: npm ci
 
-      - name: Run automated tests
+      - name: Run automated tests with coverage
         working-directory: backend
-        run: npm test -- --run
-
-      - name: Generate coverage report
-        working-directory: backend
-        run: npm run test:coverage
+        run: npm test -- --run --coverage
 
       - name: Build TypeScript backend
         working-directory: backend

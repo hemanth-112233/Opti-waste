@@ -180,4 +180,137 @@ describe('authMiddleware', () => {
     });
     expect(next).not.toHaveBeenCalled();
   });
+
+  it('returns 401 when User.findById throws during legacy-token fallback', async () => {
+    const req: any = { headers: { authorization: 'Bearer legacy-token' } };
+    const res = makeResponse() as unknown as Response;
+    const next = vi.fn();
+
+    (jwt as any).verify.mockReturnValue({ sub: 'user-throw', role: 'User' });
+    (User as any).findById.mockReturnValue({
+      populate: vi.fn().mockReturnThis(),
+      lean: vi.fn().mockRejectedValue(new Error('db failed')),
+    });
+
+    await authenticateToken(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({
+      success: false,
+      message: 'Could not authenticate user',
+      code: 'UNAUTHORIZED',
+    });
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('returns 401 when the legacy DB user is inactive', async () => {
+    const req: any = { headers: { authorization: 'Bearer legacy-token' } };
+    const res = makeResponse() as unknown as Response;
+    const next = vi.fn();
+
+    (jwt as any).verify.mockReturnValue({ sub: 'user-inactive', role: 'User' });
+    (User as any).findById.mockReturnValue({
+      populate: vi.fn().mockReturnThis(),
+      lean: vi.fn().mockResolvedValue({
+        _id: 'user-inactive',
+        email: 'inactive@example.com',
+        name: 'Inactive User',
+        is_active: false,
+        role: { name: 'User' },
+      }),
+    });
+
+    await authenticateToken(req, res, next);
+
+    expect(res.status).toHaveBeenCalledWith(401);
+    expect(res.json).toHaveBeenCalledWith({
+      success: false,
+      message: 'User not found or inactive',
+      code: 'UNAUTHORIZED',
+    });
+    expect(next).not.toHaveBeenCalled();
+  });
+
+  it('defaults req.user.role to "User" when DB user has no role and decoded.role is missing', async () => {
+    const req: any = { headers: { authorization: 'Bearer legacy-token' } };
+    const res = makeResponse() as unknown as Response;
+    const next = vi.fn();
+
+    (jwt as any).verify.mockReturnValue({ sub: 'user-default-role' });
+    (User as any).findById.mockReturnValue({
+      populate: vi.fn().mockReturnThis(),
+      lean: vi.fn().mockResolvedValue({
+        _id: 'user-default-role',
+        email: 'default@example.com',
+        name: 'Default User',
+        is_active: true,
+        role: null,
+      }),
+    });
+
+    await authenticateToken(req, res, next);
+
+    expect(req.user).toEqual({
+      id: 'user-default-role',
+      sub: 'user-default-role',
+      email: 'default@example.com',
+      name: 'Default User',
+      role: 'User',
+    });
+    expect(next).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses JWT data directly and does not require a DB lookup for enriched tokens', async () => {
+    const req: any = { headers: { authorization: 'Bearer jwt-token' } };
+    const res = makeResponse() as unknown as Response;
+    const next = vi.fn();
+
+    (jwt as any).verify.mockReturnValue({
+      sub: 'user-123',
+      email: 'alice@example.com',
+      name: 'Alice',
+      role: 'Administrator',
+    });
+
+    await authenticateToken(req, res, next);
+
+    expect(req.user).toEqual({
+      id: 'user-123',
+      sub: 'user-123',
+      email: 'alice@example.com',
+      name: 'Alice',
+      role: 'Administrator',
+    });
+    expect((User as any).findById).not.toHaveBeenCalled();
+    expect(next).toHaveBeenCalledTimes(1);
+  });
+
+  it('uses decoded.role when the DB user has no role on a legacy token', async () => {
+    const req: any = { headers: { authorization: 'Bearer legacy-token' } };
+    const res = makeResponse() as unknown as Response;
+    const next = vi.fn();
+
+    (jwt as any).verify.mockReturnValue({ sub: 'user-legacy-role', role: 'Cloud Engineer' });
+    (User as any).findById.mockReturnValue({
+      populate: vi.fn().mockReturnThis(),
+      lean: vi.fn().mockResolvedValue({
+        _id: 'user-legacy-role',
+        email: 'legacy-role@example.com',
+        name: 'Legacy Role User',
+        is_active: true,
+        role: null,
+      }),
+    });
+
+    await authenticateToken(req, res, next);
+
+    expect(req.user).toEqual({
+      id: 'user-legacy-role',
+      sub: 'user-legacy-role',
+      email: 'legacy-role@example.com',
+      name: 'Legacy Role User',
+      role: 'Cloud Engineer',
+    });
+    expect(next).toHaveBeenCalledTimes(1);
+  });
 });
