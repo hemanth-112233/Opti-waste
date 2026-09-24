@@ -1,7 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { useAuthStore, getInitials } from './useAuthStore';
-import { AuthService } from '../api/auth';
-import { queryClient } from '../lib/queryClient';
 
 const {
   jwtDecodeMock,

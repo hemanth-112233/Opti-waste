@@ -61,7 +61,7 @@ beforeEach(() => {
   });
 
   vi.stubEnv('VITE_API_BASE_URL', 'https://api.example.test');
-  vi.stubEnv('DEV', 'false');
+  vi.stubEnv('DEV', false);
 
   const apiInstance = Object.assign(apiCallMock, {
     defaults: { baseURL: 'https://api.example.test' },
@@ -100,7 +100,7 @@ describe('axiosInstance', () => {
   });
 
   it('refreshes expired tokens and retries the original request', async () => {
-    const { default: api } = await import('./axiosInstance');
+    await import('./axiosInstance');
     const responseHandler = responseUseMock.mock.calls[0][1];
     const request = { url: '/resources', headers: { Authorization: 'Bearer expired-token' }, _retry: false };
 
@@ -121,7 +121,7 @@ describe('axiosInstance', () => {
   });
 
   it('triggers logout when refreshing the token fails', async () => {
-    const { default: api } = await import('./axiosInstance');
+    await import('./axiosInstance');
     const responseHandler = responseUseMock.mock.calls[0][1];
     const request = { url: '/resources', headers: { Authorization: 'Bearer expired-token' }, _retry: false };
 
@@ -132,7 +132,6 @@ describe('axiosInstance', () => {
       response: { status: 401 },
     });
     expect(triggerLogoutMock).toHaveBeenCalledWith(true);
-    expect(api).toBeTruthy();
   });
 
   it('uses the production configuration error when VITE_API_BASE_URL is missing', async () => {
